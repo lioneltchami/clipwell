@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Privacy Policy — Clipwell"
+	description="Clipwell privacy policy. No tracking, no analytics, no cloud uploads. Recordings stay on your Mac."
+	canonicalUrl="https://lioneltchami.github.io/clipwell/privacy-policy"
+>
+	<main id="main" class="privacy">
+		<article>
+			<h1>Privacy Policy</h1>
+			<p class="meta">Last updated: August 2026</p>
+
+			<section>
+				<h2>Overview</h2>
+				<p>
+					Clipwell is a native macOS screen recorder. Privacy is a product requirement: Clipwell does not collect, store, transmit, or process personal data for analytics or advertising.
+				</p>
+			</section>
+
+			<section>
+				<h2>Data collection</h2>
+				<p>Clipwell collects no personal data. Specifically:</p>
+				<ul>
+					<li>No personal information</li>
+					<li>No usage analytics or telemetry</li>
+					<li>No crash reports sent to us</li>
+					<li>No cookies or trackers in the app</li>
+					<li>No account required</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Your recordings</h2>
+				<p>
+					Recordings are written to a folder you choose on your Mac. Clipwell does not upload recordings to our servers. If you share a file, that is outside Clipwell.
+				</p>
+			</section>
+
+			<section>
+				<h2>Permissions</h2>
+				<p>
+					macOS may ask for Screen Recording, Microphone, and Camera access. Those permissions are enforced by the system and used only to capture the media you request.
+				</p>
+			</section>
+
+			<section>
+				<h2>Website</h2>
+				<p>
+					This marketing site is static. It does not run a login system or analytics SDK. Hosting providers may log standard request metadata (IP, user agent) as part of serving pages.
+				</p>
+			</section>
+
+			<section>
+				<h2>Contact</h2>
+				<p>
+					Questions: open an issue on
+					<a href="https://github.com/lioneltchami/clipwell">github.com/lioneltchami/clipwell</a>.
+				</p>
+			</section>
+		</article>
+	</main>
+</BaseLayout>
+
+<style>
+	.privacy {
+		padding: var(--space-3xl) var(--page-gutter) var(--space-4xl);
+	}
+
+	article {
+		max-width: 42rem;
+		margin: 0 auto;
+	}
+
+	h1 {
+		font-size: var(--text-display-s);
+		font-weight: 600;
+		margin: 0 0 var(--space-sm);
+	}
+
+	.meta {
+		color: var(--color-ink-3);
+		font-size: var(--text-sm);
+		margin: 0 0 var(--space-2xl);
+	}
+
+	section {
+		margin-bottom: var(--space-xl);
+	}
+
+	h2 {
+		font-size: var(--text-xl);
+		font-weight: 600;
+		margin: 0 0 var(--space-sm);
+	}
+
+	p,
+	li {
+		color: var(--color-ink-2);
+	}
+
+	ul {
+		padding-left: 1.2rem;
+	}
+
+	a {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+</style>

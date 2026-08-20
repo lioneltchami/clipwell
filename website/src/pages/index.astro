@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.svelte';
+import WorkbenchSection from '../components/WorkbenchSection.svelte';
+import SpecSection from '../components/SpecSection.svelte';
+import FAQSection from '../components/FAQSection.svelte';
+import CTASection from '../components/CTASection.svelte';
+
+const siteUrl = 'https://lioneltchami.github.io/clipwell';
+const repo = 'https://github.com/lioneltchami/clipwell';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'SoftwareApplication',
+		name: 'Clipwell',
+		description:
+			'Native macOS screen recorder with system audio, microphone, annotations, camera overlay, trim, and GIF export. Local files only.',
+		applicationCategory: 'MultimediaApplication',
+		operatingSystem: 'macOS 15.2+',
+		url: siteUrl,
+		downloadUrl: `${repo}/releases/latest`,
+		offers: {
+			'@type': 'Offer',
+			price: '0',
+			priceCurrency: 'USD',
+			availability: 'https://schema.org/InStock'
+		},
+		author: {
+			'@type': 'Person',
+			name: 'Lionel Tchami',
+			url: 'https://github.com/lioneltchami'
+		},
+		license: 'https://opensource.org/licenses/MIT',
+		featureList: [
+			'ScreenCaptureKit recording',
+			'System audio and microphone',
+			'Camera overlay layouts',
+			'Click and keystroke overlays',
+			'Annotation drawing',
+			'Trim and GIF export',
+			'Local-only storage'
+		]
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'Clipwell',
+		url: siteUrl,
+		description: 'Native macOS screen recorder. Local files. MIT license.'
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+			{
+				'@type': 'Question',
+				name: 'Is Clipwell free?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes. MIT licensed. No subscription, no watermark, no trial clock.'
+				}
+			},
+			{
+				'@type': 'Question',
+				name: 'Does Clipwell record system audio?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes — system audio and microphone can be captured together via ScreenCaptureKit.'
+				}
+			},
+			{
+				'@type': 'Question',
+				name: 'What macOS version is required?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'macOS 15.2 Sequoia or later.'
+				}
+			}
+		]
+	}
+];
+---
+
+<BaseLayout
+	title="Clipwell — native macOS screen recorder"
+	description="Menu-bar screen recorder for macOS. System audio, mic, annotations, camera overlay, trim, and GIF export. Local files only. MIT license."
+	canonicalUrl={siteUrl}
+	structuredData={structuredData}
+>
+	<Fragment slot="head">
+		<meta name="application-name" content="Clipwell" />
+		<meta name="author" content="Lionel Tchami" />
+	</Fragment>
+
+	<main id="main">
+		<Hero client:load />
+		<WorkbenchSection client:visible />
+		<SpecSection client:visible />
+		<FAQSection client:visible />
+		<CTASection client:visible />
+	</main>
+</BaseLayout>

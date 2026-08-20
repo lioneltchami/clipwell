@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.svelte';
+import Footer from '../components/Footer.svelte';
+
+interface Props {
+	title: string;
+	description: string;
+	canonicalUrl?: string;
+	ogImage?: string;
+	lang?: string;
+	robots?: string;
+	structuredData?: object[];
+}
+
+const {
+	title,
+	description,
+	canonicalUrl,
+	ogImage = 'https://github.com/lioneltchami/clipwell/raw/main/website/public/screenshot-basic.png',
+	lang = 'en',
+	robots = 'index, follow',
+	structuredData = []
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="robots" content={robots} />
+		{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+		<meta property="og:type" content="website" />
+		{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:site_name" content="Clipwell" />
+		<meta property="og:locale" content="en_US" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="theme-color" content="#f4f6fb" />
+		<meta name="color-scheme" content="light" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		{structuredData.map((data) => (
+			<script type="application/ld+json" set:html={JSON.stringify(data)} />
+		))}
+		<slot name="head" />
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+		<Navbar client:load />
+		<slot />
+		<Footer client:load />
+		<script>
+			const nodes = document.querySelectorAll('.reveal');
+			if (nodes.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				const io = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('is-in');
+								io.unobserve(entry.target);
+							}
+						}
+					},
+					{ threshold: 0.12 }
+				);
+				nodes.forEach((n) => io.observe(n));
+			} else {
+				nodes.forEach((n) => n.classList.add('is-in'));
+			}
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	.skip-link {
+		position: absolute;
+		left: -999px;
+		top: 0;
+		background: var(--color-accent);
+		color: var(--color-accent-ink);
+		padding: 0.5rem 0.75rem;
+		z-index: 100;
+	}
+	.skip-link:focus {
+		left: var(--page-gutter);
+		top: var(--space-sm);
+	}
+</style>

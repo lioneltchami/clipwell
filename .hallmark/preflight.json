@@ -1,0 +1,7 @@
+{
+  "scanned": "2026-08-20",
+  "framework": "Astro 5 + Svelte 5 + Tailwind v4",
+  "fonts": "Space Grotesk + Inter + JetBrains Mono (Cobalt)",
+  "palette": "Cobalt OKLCH tokens in website/tokens.css",
+  "motion": "IntersectionObserver reveal + hero type-in + ⌘K palette"
+}
