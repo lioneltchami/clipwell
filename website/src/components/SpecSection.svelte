@@ -30,8 +30,8 @@
 <style>
   .spec {
     background: var(--color-band);
-    color: oklch(94% 0.01 55);
     padding: var(--space-3xl) var(--page-gutter);
+    border-block: var(--rule-hair) solid var(--color-rule);
   }
 
   .spec__inner {
@@ -43,12 +43,8 @@
     margin-bottom: var(--space-xl);
   }
 
-  .spec__head .mono-label {
-    color: oklch(78% 0.04 45);
-  }
-
   h2 {
-    color: oklch(97% 0.01 55);
+    color: var(--color-ink);
     font-size: var(--text-display-s);
     font-weight: 650;
     margin: var(--space-sm) 0 0;
@@ -56,7 +52,7 @@
 
   .table {
     background: var(--color-band-2);
-    border-color: oklch(42% 0.03 40);
+    border-color: var(--color-rule);
     border-radius: var(--radius-md);
   }
 
@@ -64,7 +60,7 @@
     display: grid;
     gap: var(--space-xs);
     padding: var(--space-md) var(--space-lg);
-    border-bottom: var(--rule-hair) solid oklch(42% 0.03 40);
+    border-bottom: var(--rule-hair) solid var(--color-rule);
     min-width: 0;
   }
 
@@ -77,18 +73,18 @@
     font-size: var(--text-xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: oklch(78% 0.1 40);
+    color: var(--color-accent);
   }
 
   .value {
     font-family: var(--font-display);
     font-weight: 600;
-    color: oklch(97% 0.01 55);
+    color: var(--color-ink);
   }
 
   .note {
     font-size: var(--text-sm);
-    color: oklch(78% 0.02 50);
+    color: var(--color-ink-3);
   }
 
   @media (min-width: 40rem) {

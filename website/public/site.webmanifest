@@ -4,8 +4,8 @@
   "description": "Native macOS screen recorder. Local files. MIT license.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f6f3ef",
-  "theme_color": "#f6f3ef",
+  "background_color": "#1a1512",
+  "theme_color": "#1a1512",
   "icons": [
     {
       "src": "/favicon.svg",

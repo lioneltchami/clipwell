@@ -75,7 +75,7 @@
   }
 
   .item {
-    background: var(--color-paper);
+    background: var(--color-paper-2);
   }
 
   .q {

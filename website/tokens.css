@@ -1,24 +1,27 @@
-/* Hallmark · genre: modern-minimal · macrostructure: Workbench · tone: soft-utilitarian · theme: Coral
- * nav: N5 Floating pill · footer: Ft5 Statement · enrichment: product window hero + annotated frames
- * Differs from Cobalt on: paper band (warm) · accent hue (warm coral) · display (Inter)
- * Mobbin DNA: Grain desktop CTA · Notion split download · mock product window
- * pre-emit critique: P4 H4 E4 S4 R4 V4
+/* Hallmark · genre: modern-minimal · macrostructure: Workbench · tone: technical · theme: dark + coral accent
+ * nav: N5 Floating pill · footer: Ft5 Statement · enrichment: unique product crops
+ * Differs from Coral light on: paper band (dark)
+ * Learnings: BetterCapture dark continuity + no repeated hero crop
+ * pre-emit critique: P4 H4 E4 S4 R5 V4
  */
 
 :root {
-	--color-paper: oklch(97.5% 0.006 55);
-	--color-paper-2: oklch(95.5% 0.008 55);
-	--color-paper-3: oklch(92.5% 0.01 50);
-	--color-ink: oklch(22% 0.02 40);
-	--color-ink-2: oklch(36% 0.018 40);
-	--color-ink-3: oklch(55% 0.014 45);
-	--color-rule: oklch(88% 0.01 50);
-	--color-accent: oklch(62% 0.145 35);
-	--color-accent-ink: oklch(99% 0.01 55);
-	--color-focus: oklch(62% 0.145 35);
-	--color-band: oklch(28% 0.03 40);
-	--color-band-2: oklch(34% 0.028 40);
-	--color-ok: oklch(55% 0.12 150);
+	--color-paper: oklch(12% 0.01 50);
+	--color-paper-2: oklch(16% 0.012 50);
+	--color-paper-3: oklch(20% 0.014 50);
+	--color-ink: oklch(97% 0.008 55);
+	--color-ink-2: oklch(82% 0.012 55);
+	--color-ink-3: oklch(62% 0.014 50);
+	--color-rule: oklch(28% 0.012 50);
+	--color-accent: oklch(68% 0.14 35);
+	--color-accent-ink: oklch(16% 0.02 40);
+	--color-focus: oklch(68% 0.14 35);
+	--color-band: oklch(9% 0.008 50);
+	--color-band-2: oklch(14% 0.012 50);
+	--color-ok: oklch(72% 0.14 150);
+	--color-grain-a: oklch(32% 0.08 300);
+	--color-grain-b: oklch(28% 0.07 250);
+	--color-grain-c: oklch(30% 0.08 20);
 
 	--font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
 	--font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -46,7 +49,7 @@
 	--page-gutter: clamp(1rem, 4vw, 2.5rem);
 	--page-max: 72rem;
 	--radius-sm: 999px;
-	--radius-md: 16px;
+	--radius-md: 20px;
 	--rule-hair: 1px;
 
 	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);

@@ -3,24 +3,28 @@
   const asset = (path: string) =>
     `${base.endsWith('/') ? base : `${base}/`}${path.replace(/^\//, '')}`;
 
+  // Hero owns screenshot-basic.png — never reuse it here.
   const steps = [
     {
       title: 'Pick a display, window, or area',
       caption: 'System picker or area selection — Clipwell stays in the menu bar until you hit record.',
       img: asset('screenshot-content-filter.png'),
-      alt: 'Clipwell content filter controls'
+      alt: 'Content filter controls in Clipwell',
+      grain: 'a'
     },
     {
       title: 'Record with mic, clicks, and draw mode',
       caption: 'System audio + microphone, click highlighter, keystroke overlay, and live annotation strokes composited into the file.',
-      img: asset('screenshot-basic.png'),
-      alt: 'Clipwell recording controls'
+      img: asset('shot-menu-tall.png'),
+      alt: 'Clipwell menu with recording options expanded',
+      grain: 'b'
     },
     {
       title: 'Trim, export GIF, keep files local',
       caption: 'Post-record trim and GIF export. Output lands in your folder — no account, no upload.',
       img: asset('screenshot-frame-rate.png'),
-      alt: 'Clipwell encoding and frame rate settings'
+      alt: 'Frame rate and encoding settings',
+      grain: 'c'
     }
   ];
 </script>
@@ -33,9 +37,9 @@
 
   <ol class="steps">
     {#each steps as step, i}
-      <li class="step reveal">
-        <figure class="frame">
-          <img src={step.img} alt={step.alt} width="1280" height="800" loading="lazy" />
+      <li class="step reveal" data-grain={step.grain}>
+        <figure class="shot">
+          <img src={step.img} alt={step.alt} width="732" height="800" loading="lazy" />
         </figure>
         <div class="step__copy">
           <p class="mono-label">0{i + 1}</p>
@@ -61,8 +65,9 @@
 
   h2 {
     font-size: var(--text-display-s);
-    font-weight: 600;
+    font-weight: 650;
     margin: var(--space-sm) 0 0;
+    color: var(--color-ink);
   }
 
   .steps {
@@ -70,32 +75,65 @@
     margin: 0;
     padding: 0;
     display: grid;
-    gap: var(--space-3xl);
+    gap: var(--space-2xl);
   }
 
   .step {
     display: grid;
     gap: var(--space-lg);
-    align-items: start;
+    align-items: stretch;
     min-width: 0;
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-paper-2);
   }
 
-  figure {
+  .shot {
     margin: 0;
     min-width: 0;
+    display: grid;
+    place-items: center;
+    padding: var(--space-xl);
+    background:
+      radial-gradient(120% 90% at 20% 10%, var(--color-grain-a), transparent 55%),
+      radial-gradient(100% 80% at 90% 80%, var(--color-grain-b), transparent 50%),
+      radial-gradient(80% 70% at 50% 100%, var(--color-grain-c), transparent 45%),
+      var(--color-paper-3);
+  }
+
+  .step[data-grain='b'] .shot {
+    background:
+      radial-gradient(120% 90% at 80% 0%, var(--color-grain-b), transparent 55%),
+      radial-gradient(100% 80% at 10% 90%, var(--color-grain-c), transparent 50%),
+      var(--color-paper-3);
+  }
+
+  .step[data-grain='c'] .shot {
+    background:
+      radial-gradient(110% 90% at 40% 0%, var(--color-grain-c), transparent 55%),
+      radial-gradient(100% 80% at 100% 100%, var(--color-grain-a), transparent 50%),
+      var(--color-paper-3);
   }
 
   img {
     display: block;
-    width: 100%;
+    width: min(100%, 22rem);
     height: auto;
-    background: var(--color-paper-2);
+    border-radius: 12px;
+    box-shadow: 0 18px 40px -24px oklch(0% 0 0 / 0.65);
+    background: var(--color-paper);
+  }
+
+  .step__copy {
+    padding: var(--space-lg) var(--space-xl) var(--space-xl);
   }
 
   h3 {
     font-size: var(--text-4xl);
-    font-weight: 600;
+    font-weight: 650;
     margin: var(--space-xs) 0 var(--space-sm);
+    color: var(--color-ink);
   }
 
   .step__copy p:last-child {
@@ -106,17 +144,20 @@
 
   @media (min-width: 60rem) {
     .step {
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
-      gap: var(--space-2xl);
-      align-items: center;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
     }
 
     .step:nth-child(even) {
-      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
     }
 
-    .step:nth-child(even) figure {
+    .step:nth-child(even) .shot {
       order: 2;
+    }
+
+    .step__copy {
+      display: grid;
+      align-content: center;
     }
   }
 </style>

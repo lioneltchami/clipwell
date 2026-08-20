@@ -147,11 +147,11 @@
     gap: var(--space-md);
     max-width: 100%;
     padding: 0.45rem 0.55rem 0.45rem 0.95rem;
-    background: color-mix(in oklch, var(--color-paper) 82%, transparent);
+    background: color-mix(in oklch, var(--color-paper-2) 88%, transparent);
     backdrop-filter: blur(14px) saturate(120%);
     border: var(--rule-hair) solid var(--color-rule);
     border-radius: 999px;
-    box-shadow: 0 10px 28px -18px oklch(30% 0.04 40 / 0.45);
+    box-shadow: 0 12px 32px -20px oklch(0% 0 0 / 0.7);
   }
 
   .wordmark {
@@ -193,7 +193,7 @@
     padding: 0.35rem 0.65rem;
     border: var(--rule-hair) solid var(--color-rule);
     border-radius: 999px;
-    background: var(--color-paper);
+    background: var(--color-paper-3);
     color: var(--color-ink-3);
     font-size: var(--text-sm);
     cursor: pointer;
@@ -211,7 +211,7 @@
     position: fixed;
     inset: 0;
     z-index: 50;
-    background: oklch(30% 0.03 40 / 0.28);
+    background: oklch(0% 0 0 / 0.55);
     display: grid;
     place-items: start center;
     padding: 12vh var(--page-gutter) var(--space-xl);
@@ -219,11 +219,11 @@
 
   .palette__panel {
     width: min(100%, 32rem);
-    background: var(--color-paper);
+    background: var(--color-paper-2);
     border: var(--rule-hair) solid var(--color-rule);
     border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 0 18px 40px -24px oklch(30% 0.04 40 / 0.5);
+    box-shadow: 0 18px 40px -24px oklch(0% 0 0 / 0.7);
   }
 
   .palette__input {
@@ -261,7 +261,7 @@
 
   .palette__item.is-active,
   .palette__item:hover {
-    background: var(--color-paper-2);
+    background: var(--color-paper-3);
   }
 
   .hint,
