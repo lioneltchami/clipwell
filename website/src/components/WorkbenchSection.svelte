@@ -1,6 +1,7 @@
 <script lang="ts">
   const base = import.meta.env.BASE_URL;
-  const asset = (path: string) => `${base}${path.replace(/^\//, '')}`;
+  const asset = (path: string) =>
+    `${base.endsWith('/') ? base : `${base}/`}${path.replace(/^\//, '')}`;
 
   const steps = [
     {
