@@ -1,10 +1,15 @@
+<script lang="ts">
+  let { base = '/' }: { base?: string } = $props();
+  const home = base.endsWith('/') ? base : `${base}/`;
+</script>
+
 <footer class="foot">
   <p class="line">Record locally. Ship the clip. Keep the rest private.</p>
   <div class="meta">
     <span class="wordmark">Clipwell</span>
     <nav aria-label="Footer">
       <a href="https://github.com/lioneltchami/clipwell">GitHub</a>
-      <a href="/privacy-policy">Privacy</a>
+      <a href={`${home}privacy-policy`}>Privacy</a>
       <a href="https://github.com/lioneltchami/clipwell/releases/latest">Download</a>
     </nav>
     <span class="copy">© 2026 · MIT</span>

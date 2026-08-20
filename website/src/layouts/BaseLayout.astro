@@ -22,6 +22,8 @@ const {
 	robots = 'index, follow',
 	structuredData = []
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
@@ -46,8 +48,8 @@ const {
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+		<link rel="manifest" href={`${base}site.webmanifest`} />
 		<meta name="theme-color" content="#f4f6fb" />
 		<meta name="color-scheme" content="light" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,9 +65,9 @@ const {
 	</head>
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
-		<Navbar client:load />
+		<Navbar client:load base={base} />
 		<slot />
-		<Footer client:load />
+		<Footer client:load base={base} />
 		<script>
 			const nodes = document.querySelectorAll('.reveal');
 			if (nodes.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

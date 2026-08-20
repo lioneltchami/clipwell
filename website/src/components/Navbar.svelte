@@ -1,16 +1,19 @@
 <script lang="ts">
+  let { base = '/' }: { base?: string } = $props();
   let open = $state(false);
   let query = $state('');
   let active = $state(0);
   let inputEl: HTMLInputElement | undefined = $state();
 
-  const commands = [
+  const home = base.endsWith('/') ? base : `${base}/`;
+
+  const commands = $derived([
     { id: 'download', label: 'Download for macOS', href: 'https://github.com/lioneltchami/clipwell/releases/latest', hint: 'GitHub' },
     { id: 'features', label: 'Jump to features', href: '#workbench', hint: 'Page' },
     { id: 'faq', label: 'Jump to FAQ', href: '#faq', hint: 'Page' },
     { id: 'source', label: 'View source', href: 'https://github.com/lioneltchami/clipwell', hint: 'GitHub' },
-    { id: 'privacy', label: 'Privacy policy', href: '/privacy-policy', hint: 'Page' }
-  ];
+    { id: 'privacy', label: 'Privacy policy', href: `${home}privacy-policy`, hint: 'Page' }
+  ]);
 
   let filtered = $derived(
     commands.filter((c) => c.label.toLowerCase().includes(query.trim().toLowerCase()))
@@ -69,7 +72,7 @@
 
 <header class="nav">
   <div class="nav__inner">
-    <a class="wordmark" href="/">Clipwell</a>
+    <a class="wordmark" href={home}>Clipwell</a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#workbench">Workbench</a>
       <a href="#spec">Spec</a>

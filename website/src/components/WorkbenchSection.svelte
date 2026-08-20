@@ -1,21 +1,24 @@
 <script lang="ts">
+  const base = import.meta.env.BASE_URL;
+  const asset = (path: string) => `${base}${path.replace(/^\//, '')}`;
+
   const steps = [
     {
       title: 'Pick a display, window, or area',
       caption: 'System picker or area selection — Clipwell stays in the menu bar until you hit record.',
-      img: '/screenshot-content-filter.png',
+      img: asset('screenshot-content-filter.png'),
       alt: 'Clipwell content filter controls'
     },
     {
       title: 'Record with mic, clicks, and draw mode',
       caption: 'System audio + microphone, click highlighter, keystroke overlay, and live annotation strokes composited into the file.',
-      img: '/screenshot-basic.png',
+      img: asset('screenshot-basic.png'),
       alt: 'Clipwell recording controls'
     },
     {
       title: 'Trim, export GIF, keep files local',
       caption: 'Post-record trim and GIF export. Output lands in your folder — no account, no upload.',
-      img: '/screenshot-frame-rate.png',
+      img: asset('screenshot-frame-rate.png'),
       alt: 'Clipwell encoding and frame rate settings'
     }
   ];
