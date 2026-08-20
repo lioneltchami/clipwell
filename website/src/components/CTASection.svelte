@@ -22,6 +22,7 @@
     padding: var(--space-xl);
     background: var(--color-paper-2);
     align-items: start;
+    border-radius: var(--radius-md);
   }
 
   h2 {

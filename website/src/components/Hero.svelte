@@ -1,21 +1,8 @@
 <script lang="ts">
-  let typed = $state('');
-  const full = 'clipwell record --mic --annotate';
   let copied = $state(false);
-
-  $effect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      typed = full;
-      return;
-    }
-    let i = 0;
-    const id = setInterval(() => {
-      i += 1;
-      typed = full.slice(0, i);
-      if (i >= full.length) clearInterval(id);
-    }, 42);
-    return () => clearInterval(id);
-  });
+  const base = import.meta.env.BASE_URL;
+  const home = base.endsWith('/') ? base : `${base}/`;
+  const shot = `${home}screenshot-basic.png`;
 
   async function copyBrew() {
     try {
@@ -34,7 +21,7 @@
       <p class="mono-label"><span class="tick" aria-hidden="true"></span> macOS 15.2+</p>
       <h1>Screen capture that stays on your Mac.</h1>
       <p class="lede">
-        Clipwell is a native menu-bar recorder: system audio, mic, annotations, camera overlay, trim, and GIF export — no cloud account, no watermark.
+        Native menu-bar recorder with system audio, mic, annotations, camera overlay, trim, and GIF export — no cloud account, no watermark.
       </p>
       <div class="hero__cta">
         <a class="btn-primary" href="https://github.com/lioneltchami/clipwell/releases/latest">Download for macOS</a>
@@ -49,24 +36,38 @@
       <p class="fine">Requires macOS 15.2 Sequoia or later · MIT license</p>
     </div>
 
-    <aside class="demo frame reveal" aria-label="Clipwell terminal preview">
-      <div class="demo__bar">
-        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="mono-label">session.sh</span>
-        <span class="status">READY</span>
+    <aside class="product reveal" aria-label="Clipwell app preview">
+      <div class="product__window frame">
+        <div class="product__chrome">
+          <span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="product__title">Clipwell</span>
+          <span class="rec" aria-hidden="true"><b></b> Recording</span>
+        </div>
+        <div class="product__body">
+          <img src={shot} alt="Clipwell recording controls on macOS" width="1280" height="800" />
+          <div class="product__panel" aria-hidden="true">
+            <div class="meter">
+              <span>Display</span>
+              <strong>Built-in Retina</strong>
+            </div>
+            <div class="meter">
+              <span>Mic</span>
+              <strong>On</strong>
+            </div>
+            <div class="meter">
+              <span>Duration</span>
+              <strong class="timer">00:42</strong>
+            </div>
+          </div>
+        </div>
       </div>
-      <pre class="demo__body"><span class="prompt">$</span> {typed}<span class="caret" aria-hidden="true"></span>
-<span class="muted"># menu bar · ScreenCaptureKit · local files only</span>
-<span class="ok">ok</span>  display + mic mixed
-<span class="ok">ok</span>  annotations composited
-<span class="ok">ok</span>  wrote ~/Movies/Clipwell/clip.mov</pre>
     </aside>
   </div>
 </section>
 
 <style>
   .hero {
-    padding: calc(var(--space-3xl) + 0.5rem) var(--page-gutter) var(--space-3xl);
+    padding: calc(var(--space-3xl) + 2.5rem) var(--page-gutter) var(--space-3xl);
     max-width: var(--page-max);
     margin: 0 auto;
   }
@@ -82,14 +83,15 @@
     width: 0.45rem;
     height: 0.45rem;
     margin-right: 0.45rem;
-    border-radius: 1px;
+    border-radius: 999px;
     background: var(--color-accent);
     vertical-align: 0.05em;
   }
 
   h1 {
     font-size: var(--text-display);
-    font-weight: 600;
+    font-weight: 650;
+    letter-spacing: -0.035em;
     margin: var(--space-md) 0 var(--space-lg);
     max-width: 14ch;
   }
@@ -114,8 +116,9 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-sm);
-    padding: 0.65rem 0.75rem;
+    padding: 0.65rem 0.85rem;
     max-width: 28rem;
+    border-radius: var(--radius-md);
     background: var(--color-paper-2);
   }
 
@@ -137,7 +140,7 @@
     color: var(--color-ink-2);
     font-size: var(--text-xs);
     font-weight: 600;
-    padding: 0.35rem 0.55rem;
+    padding: 0.35rem 0.7rem;
     cursor: pointer;
   }
 
@@ -147,93 +150,123 @@
     color: var(--color-ink-3);
   }
 
-  .demo {
-    background: var(--color-graphite);
-    color: oklch(92% 0.01 250);
-    box-shadow: 0 1px 2px oklch(0% 0 0 / 0.08);
+  .product {
     min-width: 0;
   }
 
-  .demo__bar {
+  .product__window {
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    box-shadow: 0 18px 40px -28px oklch(30% 0.04 40 / 0.55);
+    overflow: hidden;
+  }
+
+  .product__chrome {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    padding: 0.65rem 0.85rem;
-    border-bottom: var(--rule-hair) solid oklch(35% 0.02 260);
+    padding: 0.7rem 0.9rem;
+    border-bottom: var(--rule-hair) solid var(--color-rule);
+    background: var(--color-paper-2);
   }
 
-  .demo__bar .mono-label {
-    color: oklch(70% 0.02 250);
-  }
-
-  .dots {
+  .traffic {
     display: flex;
-    gap: 0.3rem;
+    gap: 0.35rem;
   }
 
-  .dots i {
-    width: 0.45rem;
-    height: 0.45rem;
+  .traffic i {
+    width: 0.55rem;
+    height: 0.55rem;
     border-radius: 999px;
-    background: oklch(45% 0.02 260);
+    background: oklch(78% 0.02 50);
   }
 
-  .status {
+  .traffic i:nth-child(1) {
+    background: oklch(72% 0.12 25);
+  }
+  .traffic i:nth-child(2) {
+    background: oklch(78% 0.12 85);
+  }
+  .traffic i:nth-child(3) {
+    background: oklch(72% 0.1 150);
+  }
+
+  .product__title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .rec {
     margin-inline-start: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     font-family: var(--font-mono);
     font-size: 0.65rem;
-    letter-spacing: 0.06em;
-    color: var(--color-ok);
-  }
-
-  .demo__body {
-    margin: 0;
-    padding: var(--space-lg);
-    font-family: var(--font-mono);
-    font-size: clamp(0.72rem, 1.8vw, 0.85rem);
-    line-height: 1.65;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-  }
-
-  .prompt {
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--color-accent);
   }
 
-  .muted {
-    color: oklch(65% 0.02 250);
-  }
-
-  .ok {
-    color: var(--color-ok);
-  }
-
-  .caret {
-    display: inline-block;
-    width: 0.45em;
-    height: 1em;
-    margin-left: 1px;
+  .rec b {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
     background: var(--color-accent);
-    vertical-align: -0.15em;
-    animation: blink 1s step-end infinite;
+    display: inline-block;
   }
 
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
+  .product__body {
+    display: grid;
+    gap: 0;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .caret {
-      animation: none;
-      opacity: 0;
-    }
+  .product__body img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--color-paper-3);
+  }
+
+  .product__panel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    border-top: var(--rule-hair) solid var(--color-rule);
+    background: var(--color-paper);
+  }
+
+  .meter {
+    min-width: 0;
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .meter span {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  .meter strong {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .timer {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent);
   }
 
   @media (min-width: 60rem) {
     .hero__grid {
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
       gap: var(--space-3xl);
     }
   }

@@ -70,15 +70,15 @@
   });
 </script>
 
-<header class="nav">
-  <div class="nav__inner">
+<header class="nav-wrap">
+  <div class="nav-pill" aria-label="Primary">
     <a class="wordmark" href={home}>Clipwell</a>
-    <nav class="nav__links" aria-label="Primary">
+    <nav class="links">
       <a href="#workbench">Workbench</a>
       <a href="#spec">Spec</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <div class="nav__actions">
+    <div class="actions">
       <button type="button" class="cmdk" onclick={openPalette} aria-label="Open command palette">
         <span>Search</span>
         <kbd>⌘K</kbd>
@@ -130,64 +130,69 @@
 {/if}
 
 <style>
-  .nav {
+  .nav-wrap {
     position: sticky;
     top: 0;
     z-index: 40;
-    border-bottom: var(--rule-hair) solid var(--color-rule);
-    background: color-mix(in oklch, var(--color-paper) 88%, transparent);
-    backdrop-filter: blur(12px) saturate(120%);
+    display: flex;
+    justify-content: center;
+    padding: var(--space-md) var(--page-gutter) 0;
+    pointer-events: none;
   }
 
-  .nav__inner {
-    max-width: var(--page-max);
-    margin: 0 auto;
-    padding: 0.75rem var(--page-gutter);
-    display: flex;
+  .nav-pill {
+    pointer-events: auto;
+    display: inline-flex;
     align-items: center;
     gap: var(--space-md);
-    min-width: 0;
+    max-width: 100%;
+    padding: 0.45rem 0.55rem 0.45rem 0.95rem;
+    background: color-mix(in oklch, var(--color-paper) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(120%);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: 999px;
+    box-shadow: 0 10px 28px -18px oklch(30% 0.04 40 / 0.45);
   }
 
   .wordmark {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.05rem;
+    font-weight: 650;
+    font-size: 1rem;
     letter-spacing: -0.03em;
     color: var(--color-ink);
     flex-shrink: 0;
   }
 
-  .nav__links {
+  .links {
     display: none;
-    gap: var(--space-lg);
-    margin-inline-start: var(--space-sm);
+    gap: var(--space-md);
   }
 
-  .nav__links a {
+  .links a {
     font-size: var(--text-sm);
     color: var(--color-ink-2);
+    white-space: nowrap;
   }
 
-  .nav__links a:hover {
+  .links a:hover {
     color: var(--color-accent);
   }
 
-  .nav__actions {
-    margin-inline-start: auto;
+  .actions {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
+    margin-inline-start: auto;
     min-width: 0;
   }
 
   .cmdk {
     display: none;
     align-items: center;
-    gap: var(--space-md);
-    padding: 0.4rem 0.65rem;
+    gap: var(--space-sm);
+    padding: 0.35rem 0.65rem;
     border: var(--rule-hair) solid var(--color-rule);
-    border-radius: var(--radius-sm);
+    border-radius: 999px;
     background: var(--color-paper);
     color: var(--color-ink-3);
     font-size: var(--text-sm);
@@ -196,17 +201,17 @@
 
   .cmdk kbd {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     padding: 0.1rem 0.35rem;
     border: var(--rule-hair) solid var(--color-rule);
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
   .palette {
     position: fixed;
     inset: 0;
     z-index: 50;
-    background: oklch(20% 0.02 258 / 0.35);
+    background: oklch(30% 0.03 40 / 0.28);
     display: grid;
     place-items: start center;
     padding: 12vh var(--page-gutter) var(--space-xl);
@@ -218,7 +223,7 @@
     border: var(--rule-hair) solid var(--color-rule);
     border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 0 1px 2px oklch(0% 0 0 / 0.06);
+    box-shadow: 0 18px 40px -24px oklch(30% 0.04 40 / 0.5);
   }
 
   .palette__input {
@@ -247,7 +252,7 @@
     text-align: left;
     padding: 0.65rem 0.75rem;
     border: 0;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     background: transparent;
     color: var(--color-ink);
     font: inherit;
@@ -271,7 +276,7 @@
   }
 
   @media (min-width: 40rem) {
-    .nav__links {
+    .links {
       display: flex;
     }
     .cmdk {

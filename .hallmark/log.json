@@ -1,11 +1,21 @@
 [
-  {
-    "date": "2026-08-20",
-    "macrostructure": "Workbench",
-    "theme": "Cobalt",
-    "enrichment": "annotated product frames",
-    "brief": "Clipwell macOS recorder landing",
-    "nav": "Cobalt bordered + ⌘K",
-    "footer": "Ft5 Statement"
-  }
+	{
+		"date": "2026-08-20",
+		"macrostructure": "Workbench",
+		"theme": "Coral",
+		"enrichment": "product window hero",
+		"brief": "Clipwell Coral restyle for broader audience",
+		"nav": "N5 Floating pill",
+		"footer": "Ft5 Statement",
+		"theme_axes": "warm-light / geometric-sans / warm"
+	},
+	{
+		"date": "2026-08-20",
+		"macrostructure": "Workbench",
+		"theme": "Cobalt",
+		"enrichment": "annotated product frames",
+		"brief": "Clipwell macOS recorder landing",
+		"nav": "Cobalt bordered + ⌘K",
+		"footer": "Ft5 Statement"
+	}
 ]
