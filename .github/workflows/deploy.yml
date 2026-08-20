@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'website/**'
-      - '.github/workflows/deploy.yml'
+      - "website/**"
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
 permissions:
@@ -35,8 +35,6 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm build
-        env:
-          NODE_ENV: production
       - uses: actions/upload-pages-artifact@v3
         with:
           path: website/dist
