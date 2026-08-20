@@ -17,7 +17,7 @@
       a: 'macOS 15.2 Sequoia or later.'
     },
     {
-      q: 'Is this the same as BetterCapture?',
+      q: 'Is this the same as Clipwell?',
       a: 'Clipwell is a fork focused on camera layouts, pause, annotations, trim, and GIF export. App rename is in progress.'
     }
   ];

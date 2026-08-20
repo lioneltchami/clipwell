@@ -104,3 +104,6 @@ website/node_modules/
 website/dist/
 .DS_Store
 dist/
+
+# LLVM coverage profiles
+*.profraw

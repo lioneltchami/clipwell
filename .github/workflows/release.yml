@@ -14,10 +14,10 @@ permissions:
   contents: write
 
 env:
-  APP_NAME: BetterCapture
-  SCHEME: BetterCapture
+  APP_NAME: Clipwell
+  SCHEME: Clipwell
   XCODE_VERSION: "26.0"
-  SPARKLE_VERSION: "2.9.0"
+  SPARKLE_VERSION: "2.9.6"
 
 jobs:
   build:
@@ -96,8 +96,12 @@ jobs:
         env:
           SPARKLE_PUBLIC_KEY: ${{ secrets.SPARKLE_PUBLIC_EDDSA_KEY }}
         run: |
-          /usr/libexec/PlistBuddy -c "Set :SUPublicEDKey $SPARKLE_PUBLIC_KEY" "BetterCapture/Info.plist"
-          /usr/libexec/PlistBuddy -c "Add :GitSHA string ${{ steps.build.outputs.git_sha }}" "BetterCapture/Info.plist"
+          if [ -z "$SPARKLE_PUBLIC_KEY" ] || [ "$SPARKLE_PUBLIC_KEY" = "SPARKLE_PUBLIC_KEY" ]; then
+            echo "A valid SPARKLE_PUBLIC_EDDSA_KEY secret is required."
+            exit 1
+          fi
+          /usr/libexec/PlistBuddy -c "Set :SUPublicEDKey $SPARKLE_PUBLIC_KEY" "Clipwell/Info.plist"
+          /usr/libexec/PlistBuddy -c "Add :GitSHA string ${{ steps.build.outputs.git_sha }}" "Clipwell/Info.plist"
 
       - name: Build application
         run: |
@@ -141,6 +145,12 @@ jobs:
             -exportPath "$RUNNER_TEMP/export" \
             -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist"
 
+      - name: Verify exported application signature
+        run: |
+          APP_PATH="$RUNNER_TEMP/export/${{ env.APP_NAME }}.app"
+          test -d "$APP_PATH"
+          codesign --verify --deep --strict --verbose=2 "$APP_PATH"
+
       - name: Notarize application
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
@@ -159,8 +169,10 @@ jobs:
             --team-id "$APPLE_TEAM_ID" \
             --wait
 
-          # Staple the notarization ticket
+          # Staple and validate the notarization ticket before packaging.
           xcrun stapler staple "$APP_PATH"
+          xcrun stapler validate "$APP_PATH"
+          spctl --assess --type execute --verbose=4 "$APP_PATH"
 
           # Clean up
           rm "$RUNNER_TEMP/${{ env.APP_NAME }}-notarize.zip"
@@ -243,8 +255,12 @@ jobs:
           RELEASE_URL="$RELEASE_URL" \
             python3 "$GITHUB_WORKSPACE/dist/update_appcast.py"
 
-          # Move the generated appcast to a known location
+          # Move the generated appcast to a known location.
           mv appcast_new.xml "$RUNNER_TEMP/appcast.xml"
+
+          # Reject an update feed that cannot install the uploaded artifact.
+          grep -q "${DMG_FILENAME}" "$RUNNER_TEMP/appcast.xml"
+          grep -q "sparkle:edSignature" "$RUNNER_TEMP/appcast.xml"
 
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v4

@@ -1,10 +1,10 @@
 # Release Process
 
-This document outlines the steps to release a new version of BetterCapture.
+This document outlines the steps to release a new version of Clipwell.
 
 ## Versioning Scheme
 
-BetterCapture uses [Calendar Versioning (CalVer)](https://calver.org/) with the format `YYYY.MINOR.PATCH`.
+Clipwell uses [Calendar Versioning (CalVer)](https://calver.org/) with the format `YYYY.MINOR.PATCH`.
 
 - `YYYY`: The current year (e.g., 2026).
 - `MINOR`: Incremental release number within the year.
@@ -27,19 +27,10 @@ Once the release is published, a GitHub Action will automatically:
 
 - Build the application.
 - Sign and notarize the app.
-- Create a DMG file: `BetterCapture-[version]-arm64.dmg`.
+- Create a DMG file: `Clipwell-[version]-arm64.dmg`.
 - Update the `appcast.xml` for Sparkle updates.
 - Upload the DMG and `appcast.xml` back to the GitHub Release.
 
-### 3. Update Homebrew Tap
+### 2. Publish additional distribution channels
 
-After the release is complete and the DMG is attached to the GitHub Release, you must manually update the Homebrew formula.
-
-1. Go to the [jsattler/homebrew-tap](https://github.com/jsattler/homebrew-tap) repository.
-2. Update the `bettercapture.rb` formula:
-   - **Version:** Update to the new release version.
-   - **URL:** Update the download URL to point to the new DMG.
-   - **SHA256:** Calculate the SHA256 of the new DMG file.
-     - You can download the DMG and run: `shasum -a 256 BetterCapture-[version]-arm64.dmg`
-     - Or get it from the CI logs if available.
-3. Commit and push the changes to the homebrew-tap repository.
+GitHub Releases is the authoritative distribution channel. If an official Homebrew formula is introduced later, document its repository and release procedure here before presenting it as an installation method.

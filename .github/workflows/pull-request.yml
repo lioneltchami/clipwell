@@ -7,11 +7,12 @@ on:
       - '**.swift'
       - '**.xcodeproj/**'
       - '**.xctestplan'
-      - '.github/workflows/pull-request.yml'
+      - '.swiftlint.yml'
+      - '.github/workflows/**'
 
 env:
-  APP_NAME: BetterCapture
-  SCHEME: BetterCapture
+  APP_NAME: Clipwell
+  SCHEME: Clipwell
   XCODE_VERSION: '26.0'
 
 jobs:
@@ -46,7 +47,9 @@ jobs:
         run: xcodebuild -version
 
       - name: Build application
+        shell: bash
         run: |
+          set -o pipefail
           xcodebuild build \
             -project "${{ env.APP_NAME }}.xcodeproj" \
             -scheme "${{ env.SCHEME }}" \
@@ -54,7 +57,7 @@ jobs:
             -destination "platform=macOS" \
             CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
-            | xcbeautify --renderer github-actions || true
+            | xcbeautify --renderer github-actions
 
   test:
     name: Test
@@ -70,12 +73,14 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
 
       - name: Run tests
+        shell: bash
         run: |
+          set -o pipefail
           xcodebuild test \
             -project "${{ env.APP_NAME }}.xcodeproj" \
             -scheme "${{ env.SCHEME }}" \
             -destination "platform=macOS" \
             CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
-            | xcbeautify --renderer github-actions || true
+            | xcbeautify --renderer github-actions
 

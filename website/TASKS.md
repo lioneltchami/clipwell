@@ -1,7 +1,7 @@
 # Landing Page Setup Tasks - Issue #7
 
 ## Overview
-Transform the existing dark-themed landing page (originally for "deaper/betterASO") into a light-themed landing page for BetterCapture - a macOS screen recorder.
+Transform the existing dark-themed landing page (originally for "deaper/betterASO") into a light-themed landing page for Clipwell - a macOS screen recorder.
 
 ## Design Changes
 
@@ -26,14 +26,14 @@ Transform the existing dark-themed landing page (originally for "deaper/betterAS
   
 - [ ] Left column (2/3 width):
   - Frosted glass effect card with rounded corners
-  - Hero heading: Focus on BetterCapture being a native macOS screen recorder
+  - Hero heading: Focus on Clipwell being a native macOS screen recorder
   - Subheading: Emphasize free, open-source, native experience
   - Installation section below:
     - Homebrew installation command with copy button
     - Direct download button linking to latest GitHub Release
   
 - [ ] Right column (1/3 width):
-  - Screenshot placeholder (will be replaced with actual BetterCapture screenshot)
+  - Screenshot placeholder (will be replaced with actual Clipwell screenshot)
   - Ensure proper aspect ratio and responsive sizing
 
 **Content to draft:**
@@ -47,7 +47,7 @@ Transform the existing dark-themed landing page (originally for "deaper/betterAS
 **Tasks:**
 - [ ] Update FeatureCard.svelte for light theme compatibility
 - [ ] Update FeaturesSection.svelte with new content:
-  - Draft 4 key features for BetterCapture
+  - Draft 4 key features for Clipwell
   - Suggested features:
     1. **Native macOS Experience** - Built with SwiftUI, follows Apple HIG
     2. **Instant Recording** - Quick access via menu bar, system-level integration
@@ -111,7 +111,7 @@ Transform the existing dark-themed landing page (originally for "deaper/betterAS
   - Page title
   - Meta description
   - Keywords (screen recording, macOS, SwiftUI, open source)
-  - Structured data for BetterCapture
+  - Structured data for Clipwell
   - Remove old "deaper/betterASO" references
 
 - [ ] Update BaseLayout.astro:
@@ -152,7 +152,7 @@ Transform the existing dark-themed landing page (originally for "deaper/betterAS
 
 1. **Hero card styling:** Frosted glass effect for header/subheader card
 2. **Installation methods:** Homebrew command + direct download button to GitHub Releases
-3. **Feature content:** Draft placeholder text based on BetterCapture's focus (native, free, open-source)
+3. **Feature content:** Draft placeholder text based on Clipwell's focus (native, free, open-source)
 4. **Roadmap section:** Prominent card section similar to CTA, linking to GitHub Milestones
 5. **Screenshots:** Placeholders for now, to be replaced by user later
 
@@ -160,6 +160,6 @@ Transform the existing dark-themed landing page (originally for "deaper/betterAS
 
 ## Dependencies & Links
 
-- GitHub Releases: `https://github.com/jsattler/BetterCapture/releases`
-- GitHub Milestones: `https://github.com/jsattler/BetterCapture/milestones`
-- Homebrew package name: TBD (verify with user or assume `bettercapture`)
+- GitHub Releases: `https://github.com/lioneltchami/clipwell/releases`
+- GitHub Milestones: `https://github.com/lioneltchami/clipwell/milestones`
+- Homebrew package name: TBD (verify with user or assume `clipwell`)

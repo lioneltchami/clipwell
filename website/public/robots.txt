@@ -1,6 +1,6 @@
-# BetterCapture - robots.txt
+# Clipwell - robots.txt
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://bettercapture.app/sitemap-index.xml
+Sitemap: https://lioneltchami.github.io/clipwell/sitemap-index.xml
