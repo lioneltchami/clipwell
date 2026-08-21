@@ -29,8 +29,9 @@ How Clipwell is built. Component structure, data flow, and implementation detail
 
 ## Process
 
-- [Release Process:](RELEASE.md) Versioning scheme, release steps, Homebrew tap updates.
-- [Smoke Testing:](SMOKE_TESTING.md) Manual test matrix covering all codec/container/audio combinations.
+- [Release Process:](RELEASE.md) Semantic versioning, signing, notarization, Sparkle appcast publication, recovery, and verification.
+- [Smoke Testing:](SMOKE_TESTING.md) Manual test matrix for codec, container, audio, permissions, and capture flows.
+- [Migration to Clipwell:](MIGRATION_TO_CLIPWELL.md) Product rename, bundle identity, and supported legacy URL-scheme compatibility.
 
 ## Decisions
 

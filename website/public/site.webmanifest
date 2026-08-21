@@ -2,15 +2,16 @@
   "name": "Clipwell",
   "short_name": "Clipwell",
   "description": "Native macOS screen recorder. Local files. MIT license.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#1a1512",
-  "theme_color": "#1a1512",
+  "background_color": "#111022",
+  "theme_color": "#111022",
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "clipwell-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

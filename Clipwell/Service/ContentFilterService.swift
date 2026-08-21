@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import ScreenCaptureKit
+@preconcurrency import ScreenCaptureKit
 import OSLog
 import CoreGraphics
-import AVFoundation
+@preconcurrency import AVFoundation
 import AVFAudio
 import AppKit
 
