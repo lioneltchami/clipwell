@@ -155,7 +155,7 @@ jobs:
           echo "DMG_PATH=$DMG_PATH" >> $GITHUB_ENV
 
       - name: Upload DMG artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.APP_NAME }}-${{ steps.version.outputs.version }}-arm64.dmg
           path: ${{ env.DMG_PATH }}

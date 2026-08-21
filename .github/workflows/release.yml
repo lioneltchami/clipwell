@@ -264,14 +264,14 @@ jobs:
           grep -q "sparkle:edSignature" "$RUNNER_TEMP/appcast.xml"
 
       - name: Upload DMG artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.APP_NAME }}-${{ steps.version.outputs.version }}-arm64.dmg
           path: ${{ env.DMG_PATH }}
           if-no-files-found: error
 
       - name: Upload appcast artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: appcast
           path: ${{ runner.temp }}/appcast.xml
