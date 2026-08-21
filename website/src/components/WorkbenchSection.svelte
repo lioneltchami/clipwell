@@ -25,7 +25,7 @@
       kind: 'image',
       title: 'Pick a display, window, or area',
       caption: 'System picker or area selection — Clipwell stays in the menu bar until you hit record.',
-      img: asset('screenshot-content-filter.png'),
+      img: asset('screenshot-content-filter-clipwell.png'),
       alt: 'Content filter controls in Clipwell',
       grain: 'a'
     },

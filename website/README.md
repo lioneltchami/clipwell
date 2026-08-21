@@ -20,7 +20,7 @@ Run `pnpm build` before committing website changes. The GitHub Pages workflow bu
 
 ## Product Assets
 
-Keep product images in `public/` and use authentic Clipwell screens wherever possible. Do not reuse the hero recording image as a workflow-step image, and update screenshots whenever visible product branding changes. The website uses `screenshot-basic.png` for the hero and `screenshot-content-filter.png`, `screenshot-frame-rate.png`, and a dedicated recording-aids visual for the Workbench sequence.
+Keep product images in `public/` and use authentic Clipwell screens wherever possible. Do not reuse the hero recording image as a workflow-step image, and update screenshots whenever visible product branding changes. The website uses `screenshot-basic.png` for the hero and `screenshot-content-filter-clipwell.png`, `screenshot-frame-rate.png`, and a dedicated recording-aids visual for the Workbench sequence.
 
 ## Brand
 
