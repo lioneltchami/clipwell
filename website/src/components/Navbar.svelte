@@ -9,7 +9,9 @@
 
   const commands = $derived([
     { id: 'download', label: 'Download for macOS', href: 'https://github.com/lioneltchami/clipwell/releases/latest', hint: 'GitHub' },
-    { id: 'features', label: 'Jump to features', href: '#workbench', hint: 'Page' },
+    { id: 'demo', label: 'Try the interactive product tour', href: '#demo', hint: 'Page' },
+    { id: 'release', label: 'View the latest signed release', href: '#download', hint: 'Page' },
+    { id: 'pricing', label: 'View commercial-readiness draft', href: '#pricing', hint: 'Page' },
     { id: 'faq', label: 'Jump to FAQ', href: '#faq', hint: 'Page' },
     { id: 'source', label: 'View source', href: 'https://github.com/lioneltchami/clipwell', hint: 'GitHub' },
     { id: 'privacy', label: 'Privacy policy', href: `${home}privacy-policy`, hint: 'Page' }
@@ -74,8 +76,8 @@
   <div class="nav-pill" aria-label="Primary">
     <a class="wordmark" href={home}>Clipwell</a>
     <nav class="links">
-      <a href="#workbench">Workbench</a>
-      <a href="#spec">Spec</a>
+      <a href="#demo">Demo</a>
+      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="actions">

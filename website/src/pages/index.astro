@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.svelte';
+import ProductDemo from '../components/ProductDemo.svelte';
 import WorkbenchSection from '../components/WorkbenchSection.svelte';
 import SpecSection from '../components/SpecSection.svelte';
+import ReleaseDownload from '../components/ReleaseDownload.svelte';
+import PricingPreview from '../components/PricingPreview.svelte';
 import FAQSection from '../components/FAQSection.svelte';
 import CTASection from '../components/CTASection.svelte';
 
@@ -58,7 +61,7 @@ const structuredData = [
 				name: 'Is Clipwell free?',
 				acceptedAnswer: {
 					'@type': 'Answer',
-					text: 'Yes. MIT licensed. No subscription, no watermark, no trial clock.'
+					text: 'The current public release is free and MIT licensed. Commercial support and service terms are being drafted separately.'
 				}
 			},
 			{
@@ -93,11 +96,14 @@ const structuredData = [
 		<meta name="author" content="Lionel Tchami" />
 	</Fragment>
 
-	<main id="main">
-		<Hero client:load />
-		<WorkbenchSection client:visible />
-		<SpecSection client:visible />
-		<FAQSection client:visible />
-		<CTASection client:visible />
-	</main>
+		<main id="main">
+			<Hero client:load />
+			<ProductDemo client:visible />
+			<WorkbenchSection client:visible />
+			<SpecSection client:visible />
+			<ReleaseDownload client:visible />
+			<PricingPreview client:visible />
+			<FAQSection client:visible />
+			<CTASection client:visible />
+		</main>
 </BaseLayout>

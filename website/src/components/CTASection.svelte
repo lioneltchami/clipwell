@@ -3,7 +3,7 @@
     <div>
       <p class="mono-label">Install</p>
       <h2>Get Clipwell on your menu bar</h2>
-      <p>Download the latest build, grant Screen Recording once, then record.</p>
+      <p>Download the latest signed release, grant Screen Recording once, then record. Release notes and package details stay visible above.</p>
     </div>
     <a class="btn-primary" href="https://github.com/lioneltchami/clipwell/releases/latest">Download for macOS</a>
   </div>

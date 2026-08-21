@@ -4,7 +4,7 @@
 
 ## Download
 
-Download the latest signed release from [GitHub Releases](https://github.com/lioneltchami/clipwell/releases/latest). Clipwell requires **macOS 15.2 Sequoia or later** and currently ships as an Apple-silicon DMG.
+Download the latest signed release from [GitHub Releases](https://github.com/lioneltchami/clipwell/releases/latest). The landing page reads the public GitHub Release metadata when available and otherwise falls back to the verified bundled release reference. Clipwell requires **macOS 15.2 Sequoia or later** and currently ships as an Apple-silicon DMG.
 
 On first use, grant **Screen Recording** permission in System Settings. Enable **Microphone** permission only when you want microphone audio. If macOS blocks an app after moving it, open it from `/Applications` after completing the standard installation flow.
 
@@ -16,6 +16,7 @@ On first use, grant **Screen Recording** permission in System Settings. Enable *
 - Click highlights, keystroke overlays, and live annotation strokes composited into recordings.
 - Built-in camera overlay layouts, pause/resume, post-recording trim, and GIF export.
 - Local files, no account, no watermark, and no cloud dependency.
+- An interactive website tour that switches among authentic Clipwell states for walkthroughs, bug reports, and quick clips.
 
 ## Build from Source
 
@@ -36,9 +37,13 @@ The website lives in [`website/`](./website). Run it locally with `pnpm install 
 
 Clipwell releases are signed, notarized, and published through [GitHub Releases](https://github.com/lioneltchami/clipwell/releases). Sparkle reads the release `appcast.xml` to offer in-app updates. See [the release guide](./docs/RELEASE.md) for the required repository secrets, release process, recovery workflow, and verification checks.
 
+## Commercial Readiness
+
+The current public Clipwell release remains MIT licensed and free to download. Commercial support, services, and original add-ons are under consideration, but no paid plan, price, purchase flow, or commercial agreement is active today. The [commercialization policy](./docs/COMMERCIALIZATION.md) and [commercial license framework](./COMMERCIAL_LICENSE.md) explain the required decisions and preserve the rights of MIT-covered components.
+
 ## Documentation
 
-Technical references, architecture notes, feature specifications, manual smoke tests, and release guidance are indexed in [docs/README.md](./docs/README.md).
+Technical references, architecture notes, feature specifications, manual smoke tests, release guidance, and commercialization policy are indexed in [docs/README.md](./docs/README.md).
 
 ## Privacy
 
@@ -50,4 +55,4 @@ Clipwell is distributed under the [MIT License](./LICENSE). It is a renamed and 
 
 ## Website and Source
 
-The public site is [lioneltchami.github.io/clipwell](https://lioneltchami.github.io/clipwell/). Source and issue tracking are at [lioneltchami/clipwell](https://github.com/lioneltchami/clipwell).
+The public site is [lioneltchami.github.io/clipwell](https://lioneltchami.github.io/clipwell/). It includes an interactive task-based product tour, release-aware download information, and clearly labelled draft commercial-readiness content. Source and issue tracking are at [lioneltchami/clipwell](https://github.com/lioneltchami/clipwell).

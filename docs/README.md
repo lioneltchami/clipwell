@@ -32,6 +32,8 @@ How Clipwell is built. Component structure, data flow, and implementation detail
 - [Release Process:](RELEASE.md) Semantic versioning, signing, notarization, Sparkle appcast publication, recovery, and verification.
 - [Smoke Testing:](SMOKE_TESTING.md) Manual test matrix for codec, container, audio, permissions, and capture flows.
 - [Migration to Clipwell:](MIGRATION_TO_CLIPWELL.md) Product rename, bundle identity, and supported legacy URL-scheme compatibility.
+- [Commercialization Policy:](COMMERCIALIZATION.md) Current MIT status, potential commercial paths, and decisions required before selling.
+- [Commercial License Framework:](../COMMERCIAL_LICENSE.md) Non-operative draft terms for future original commercial materials and services.
 
 ## Decisions
 

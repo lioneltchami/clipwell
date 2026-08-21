@@ -33,7 +33,7 @@
           {copied ? 'Copied' : 'Copy'}
         </button>
       </div>
-      <p class="fine">Requires macOS 15.2 Sequoia or later · MIT license</p>
+      <p class="fine">Current public release · macOS 15.2 Sequoia or later · MIT license</p>
     </div>
 
     <aside class="product reveal" aria-label="Clipwell app preview">

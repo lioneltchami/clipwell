@@ -2,7 +2,7 @@
   const faqs = [
     {
       q: 'Is Clipwell free?',
-      a: 'Yes. MIT licensed. No subscription, no watermark, no trial clock.'
+      a: 'The current public release is free to download and MIT licensed. There is no paid plan, purchase flow, or commercial support commitment today.'
     },
     {
       q: 'Does it record system audio?',
@@ -17,8 +17,12 @@
       a: 'macOS 15.2 Sequoia or later.'
     },
     {
-      q: 'Is this the same as Clipwell?',
-      a: 'Clipwell is a fork focused on camera layouts, pause, annotations, trim, and GIF export. App rename is in progress.'
+      q: 'Will Clipwell offer paid plans?',
+      a: 'Commercial support, services, and original add-ons are under consideration. Prices and terms are not set, so the site labels them as draft only.'
+    },
+    {
+      q: 'Is Clipwell related to BetterCapture?',
+      a: 'Clipwell is a renamed and extended derivative of BetterCapture. The upstream MIT notice remains preserved in the repository.'
     }
   ];
 
