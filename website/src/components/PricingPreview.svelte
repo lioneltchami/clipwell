@@ -31,7 +31,10 @@
         <li>Support and procurement options</li>
         <li>Clear coexistence with MIT components</li>
       </ul>
-      <a class="btn-primary" href="https://github.com/lioneltchami/clipwell/blob/main/docs/COMMERCIALIZATION.md">Review the draft</a>
+      <div class="pricing__actions">
+        <button class="btn-primary" type="button" disabled aria-disabled="true">Commercial checkout — coming soon</button>
+        <a class="btn-ghost" href="https://github.com/lioneltchami/clipwell/blob/main/docs/COMMERCIALIZATION.md">Review the draft →</a>
+      </div>
     </article>
   </div>
 
@@ -123,10 +126,17 @@
     color: var(--color-accent);
   }
 
-  .pricing__card .btn-primary,
-  .pricing__card .btn-ghost {
-    width: fit-content;
+  .pricing__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md);
     margin-top: auto;
+  }
+
+  .pricing__actions .btn-primary,
+  .pricing__actions .btn-ghost {
+    width: fit-content;
   }
 
   .pricing__fine {

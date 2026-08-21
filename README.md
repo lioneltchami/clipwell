@@ -39,7 +39,7 @@ Clipwell releases are signed, notarized, and published through [GitHub Releases]
 
 ## Commercial Readiness
 
-The current public Clipwell release remains MIT licensed and free to download. Commercial support, services, and original add-ons are under consideration, but no paid plan, price, purchase flow, or commercial agreement is active today. The [commercialization policy](./docs/COMMERCIALIZATION.md) and [commercial license framework](./COMMERCIAL_LICENSE.md) explain the required decisions and preserve the rights of MIT-covered components.
+The current public Clipwell release remains MIT licensed and free to download. Commercial support, services, and original add-ons are under consideration, but no paid plan, price, purchase flow, or commercial agreement is active today. The [commercialization policy](./docs/COMMERCIALIZATION.md), [commercial license framework](./COMMERCIAL_LICENSE.md), and [Stripe checkout-readiness guide](./docs/STRIPE_CHECKOUT.md) explain the required decisions and preserve the rights of MIT-covered components.
 
 ## Documentation
 

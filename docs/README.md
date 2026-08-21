@@ -34,6 +34,7 @@ How Clipwell is built. Component structure, data flow, and implementation detail
 - [Migration to Clipwell:](MIGRATION_TO_CLIPWELL.md) Product rename, bundle identity, and supported legacy URL-scheme compatibility.
 - [Commercialization Policy:](COMMERCIALIZATION.md) Current MIT status, potential commercial paths, and decisions required before selling.
 - [Commercial License Framework:](../COMMERCIAL_LICENSE.md) Non-operative draft terms for future original commercial materials and services.
+- [Stripe Checkout Readiness:](STRIPE_CHECKOUT.md) Required seller, product, price, tax, privacy, and fulfilment decisions before accepting payment.
 
 ## Decisions
 
