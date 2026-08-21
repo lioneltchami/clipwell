@@ -32,3 +32,17 @@ The current draft is intentionally non-priced. If Clipwell launches commercially
 ## Current Website Behavior
 
 The public site deliberately labels commercial support as **planned** and the checkout as **coming soon**. It does not collect payment information, create a Stripe session, or claim a price, subscription, or commercial entitlement.
+
+## Prewired Website Variables
+
+The static website is already wired to the following **public build-time** variables. They are intentionally non-secret because a payment-link URL and display label are delivered to every visitor’s browser. Do not place Stripe secret keys, restricted keys, webhook secrets, or customer data in these variables.
+
+| GitHub Actions variable | Default | Effect |
+|---|---|---|
+| `PUBLIC_STRIPE_CHECKOUT_ENABLED` | `false` | Checkout remains disabled unless this value is exactly `true`. |
+| `PUBLIC_STRIPE_PAYMENT_LINK` | empty | Must be an HTTPS URL beginning with `https://buy.stripe.com/` or `https://checkout.stripe.com/`. An invalid or empty value leaves checkout disabled. |
+| `PUBLIC_STRIPE_PRODUCT_LABEL` | `Commercial support` | Controls the planned commercial-product label on the site. |
+
+To activate the link after all commercial decisions are final, create these as repository **Actions variables** under GitHub repository settings, not as secrets. The Pages workflow passes them to the website build. A later deployment will show the checkout link only when both the enable flag and an allowlisted Stripe URL are present.
+
+> Keep `STRIPE_SECRET_KEY`, restricted API keys, and webhook signing secrets out of this static GitHub Pages site. A future server-backed checkout flow may use those secrets on a protected backend, but the current page is designed for a public Stripe Payment Link only.

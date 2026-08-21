@@ -1,3 +1,10 @@
+<script lang="ts">
+  const checkoutEnabled = import.meta.env.PUBLIC_STRIPE_CHECKOUT_ENABLED === 'true';
+  const paymentLink = import.meta.env.PUBLIC_STRIPE_PAYMENT_LINK?.trim() ?? '';
+  const productLabel = import.meta.env.PUBLIC_STRIPE_PRODUCT_LABEL?.trim() || 'Commercial support';
+  const checkoutConfigured = checkoutEnabled && /^https:\/\/(?:buy|checkout)\.stripe\.com\//.test(paymentLink);
+</script>
+
 <section id="pricing" class="pricing" aria-labelledby="pricing-title">
   <div class="pricing__head reveal">
     <p class="mono-label">Commercial readiness</p>
@@ -23,7 +30,7 @@
 
     <article class="pricing__card pricing__card--featured frame reveal">
       <p class="mono-label">Planned</p>
-      <h3>Commercial support</h3>
+      <h3>{productLabel}</h3>
       <p class="pricing__price">To be announced</p>
       <p>For teams that need a commercial agreement, response commitments, and managed deployment or support terms.</p>
       <ul>
@@ -32,7 +39,11 @@
         <li>Clear coexistence with MIT components</li>
       </ul>
       <div class="pricing__actions">
-        <button class="btn-primary" type="button" disabled aria-disabled="true">Commercial checkout — coming soon</button>
+        {#if checkoutConfigured}
+          <a class="btn-primary" href={paymentLink}>Continue to secure checkout</a>
+        {:else}
+          <button class="btn-primary" type="button" disabled aria-disabled="true">Commercial checkout — coming soon</button>
+        {/if}
         <a class="btn-ghost" href="https://github.com/lioneltchami/clipwell/blob/main/docs/COMMERCIALIZATION.md">Review the draft →</a>
       </div>
     </article>
