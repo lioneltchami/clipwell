@@ -10,7 +10,7 @@
   <div class="proof__grid">
     <article class="proof__card frame reveal">
       <p class="mono-label">Source</p>
-      <h3>Open implementation</h3>
+      <h3>Open source</h3>
       <p>Review the native macOS source, build steps, license, and issue history before you run the app.</p>
       <a class="btn-ghost" href="https://github.com/lioneltchami/clipwell">Inspect source →</a>
     </article>
