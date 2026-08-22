@@ -1,12 +1,12 @@
 # Clipwell
 
-**Clipwell** is a native, menu-bar screen recorder for macOS. It captures displays, windows, or selected areas with system audio, microphone audio, annotations, camera overlays, trimming, and GIF export. Recordings stay on your Mac: Clipwell has no account, analytics service, watermark, or cloud upload requirement.
+**Clipwell** is a native menu-bar screen recorder for macOS. It captures displays, windows, or selected areas with system audio, microphone audio, annotations, camera overlays, trimming, and GIF export. Recordings stay on your Mac: Clipwell has no account, analytics service, watermark, or cloud-upload requirement.
 
-## Download
+## Distribution Status
 
-Download the latest signed release from [GitHub Releases](https://github.com/lioneltchami/clipwell/releases/latest). The landing page reads the public GitHub Release metadata when available and otherwise falls back to the verified bundled release reference. Clipwell requires **macOS 15.2 Sequoia or later** and currently ships as an Apple-silicon DMG.
+The Clipwell source repository and future build artifacts are private. The public product site is deployed separately from the private source tree. Future paid distribution, if launched, will use a verified buyer portal and private artifact storage rather than anonymous GitHub release URLs.
 
-On first use, grant **Screen Recording** permission in System Settings. Enable **Microphone** permission only when you want microphone audio. If macOS blocks an app after moving it, open it from `/Applications` after completing the standard installation flow.
+This privacy change does not retract historic MIT rights. The public v1.0.0 and v1.0.1 releases were MIT-era releases, and any distributed material containing substantial MIT-covered code must retain [`LICENSE`](./LICENSE) and [`NOTICE.md`](./NOTICE.md).
 
 ## Features
 
@@ -16,7 +16,6 @@ On first use, grant **Screen Recording** permission in System Settings. Enable *
 - Click highlights, keystroke overlays, and live annotation strokes composited into recordings.
 - Built-in camera overlay layouts, pause/resume, post-recording trim, and GIF export.
 - Local files, no account, no watermark, and no cloud dependency.
-- An interactive website tour that switches among authentic Clipwell states for walkthroughs, bug reports, and quick clips.
 
 ## Build from Source
 
@@ -31,15 +30,17 @@ xcodebuild test \
   CODE_SIGNING_REQUIRED=NO
 ```
 
-The website lives in [`website/`](./website). Run it locally with `pnpm install && pnpm dev`, or create the production site with `pnpm build`.
-
 ## Updates and Releases
 
-Clipwell releases are signed, notarized, and published through [GitHub Releases](https://github.com/lioneltchami/clipwell/releases). Sparkle reads the release `appcast.xml` to offer in-app updates. See [the release guide](./docs/RELEASE.md) for the required repository secrets, release process, recovery workflow, and verification checks.
+Future commercial builds are signed, notarized, and retained in private build-team releases. Buyer delivery is handled by the Clipwell fulfillment service, which verifies payment events, creates entitlements, and streams a DMG from private artifact storage through short-lived download grants.
 
-## Commercial Readiness
+Sparkle uses a public **informational** appcast at `https://clipwell-fulfillment.apoti.workers.dev/appcast.xml`. It may notify a buyer that an update exists, but it does not expose a public DMG enclosure. Buyer access and downloads remain in the portal until an authenticated in-app update design is separately implemented and security-reviewed. See [the release guide](./docs/RELEASE.md).
 
-The current public Clipwell release remains MIT licensed and free to download. Commercial support, services, and original add-ons are under consideration, but no paid plan, price, purchase flow, or commercial agreement is active today. The [commercialization policy](./docs/COMMERCIALIZATION.md), [commercial license framework](./COMMERCIAL_LICENSE.md), and [Stripe checkout-readiness guide](./docs/STRIPE_CHECKOUT.md) explain the required decisions and preserve the rights of MIT-covered components.
+## Commercial Status
+
+The Stripe Product, $19 one-time Price, fulfillment Worker, private D1 database, private R2 bucket, and Stripe webhook exist, but the live Payment Link is intentionally deactivated. The public site must not advertise a paid purchase until the seller identity, terms, tax/privacy position, original paid entitlement, transactional email, commercial release artifact, and end-to-end acceptance tests are complete.
+
+The approved buyer support contact is `support@getclipwell.com`, and the intended refund window is 30 days. These facts do not substitute for final sales terms. See the [commercialization policy](./docs/COMMERCIALIZATION.md) and [Stripe fulfillment guide](./docs/STRIPE_CHECKOUT.md).
 
 ## Documentation
 
@@ -47,12 +48,12 @@ Technical references, architecture notes, feature specifications, manual smoke t
 
 ## Privacy
 
-Clipwell records only the content and audio sources that you select. Output is written to the configured local folder. The app does not require an account and does not upload recordings or telemetry.
+Clipwell records only the content and audio sources that the user selects. Output is written to the configured local folder. The app does not require an account and does not upload recordings or telemetry. Any future buyer portal collects only the data required for purchase fulfilment and support as described in final published privacy terms.
 
 ## License and Attribution
 
-Clipwell is distributed under the [MIT License](./LICENSE). It is a renamed and extended derivative of BetterCapture; the original copyright notice and license terms are preserved in [`LICENSE`](./LICENSE). See [NOTICE.md](./NOTICE.md) for attribution and migration context.
+Clipwell contains MIT-covered material and remains subject to the [MIT License](./LICENSE) for that material. It is a renamed and extended derivative of BetterCapture; the original copyright notice and license terms are preserved in [`LICENSE`](./LICENSE). See [NOTICE.md](./NOTICE.md) for attribution and migration context.
 
-## Website and Source
+## Project Locations
 
-The public site is [lioneltchami.github.io/clipwell](https://lioneltchami.github.io/clipwell/). It includes an interactive task-based product tour, release-aware download information, and clearly labelled draft commercial-readiness content. Source and issue tracking are at [lioneltchami/clipwell](https://github.com/lioneltchami/clipwell).
+The public marketing deployment is currently hosted independently at `https://clipwell-site-1cn.pages.dev`. The application source, build pipeline, and support documentation reside in the private `lioneltchami/clipwell` repository.

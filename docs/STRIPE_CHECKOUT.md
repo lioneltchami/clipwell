@@ -1,48 +1,65 @@
-# Stripe Checkout Readiness
+# Stripe Checkout and Fulfillment
 
-> **Status: no Stripe product, price, payment link, Checkout Session, or payment collection flow has been created for Clipwell.** The website uses a disabled commercial-checkout placeholder until the decisions below are complete.
+> **Status: infrastructure deployed; checkout intentionally inactive.** Clipwell has a live Stripe Product, one-time $19.00 Price, and Payment Link, but the Payment Link is deactivated until immediate buyer delivery, seller disclosures, and production acceptance tests are complete. No buyer should be charged before that point.
 
-A Stripe payment link should be created only after the commercial offer is real, its terms are published, and the seller is ready to accept payment. Creating a live payment link before those facts are set can expose customers to an unclear purchase, missing refund disclosures, or an unsupported service commitment.
+## Existing Stripe Objects
 
-## Required Inputs
-
-| Input | Decision required before creation |
-|---|---|
-| Seller | Legal seller name, business address, Stripe account, and customer support contact. |
-| Product | Exact commercial offering, such as support package, managed service, original add-on, or paid update term. |
-| Price | Amount, currency, one-time versus recurring billing, renewal schedule, and any quantity limits. |
-| Tax | Whether tax collection applies, registration status, and the jurisdictions to collect in. |
-| Refunds | Published refund, cancellation, and renewal policy. |
-| Fulfilment | What the buyer receives, when delivery begins, and how entitlement or support is verified. |
-| Privacy | Payment-data handling, processor disclosure, and any account or service data collected after purchase. |
-| URLs | Production success URL, cancellation URL, support URL, and final commercial terms URL. |
-
-## Proposed Non-Live Product Shape
-
-The current draft is intentionally non-priced. If Clipwell launches commercially, the first Stripe product should describe the value that is actually commercial rather than trying to relabel the MIT-covered public release. A conservative first option is **Clipwell Commercial Support**, with a one-time or annual support term whose scope, response target, exclusions, and renewal rules are published before checkout.
-
-## Activation Checklist
-
-1. Finalize the commercial terms in [`COMMERCIAL_LICENSE.md`](../COMMERCIAL_LICENSE.md) and the policy in [`COMMERCIALIZATION.md`](COMMERCIALIZATION.md).
-2. Supply every required input above and obtain legal, tax, and consumer-disclosure review appropriate to the seller’s jurisdiction.
-3. Create the Stripe Product and Price, then create a payment link or Checkout Session with production success and cancellation URLs.
-4. Test the purchase in Stripe test mode, including receipt, tax behavior, failed payment, refund, and customer-support handoff.
-5. Replace the disabled website placeholder only after the live link, refund policy, privacy policy, and fulfilment process are verified.
-
-## Current Website Behavior
-
-The public site deliberately labels commercial support as **planned** and the checkout as **coming soon**. It does not collect payment information, create a Stripe session, or claim a price, subscription, or commercial entitlement.
-
-## Prewired Website Variables
-
-The static website is already wired to the following **public build-time** variables. They are intentionally non-secret because a payment-link URL and display label are delivered to every visitor’s browser. Do not place Stripe secret keys, restricted keys, webhook secrets, or customer data in these variables.
-
-| GitHub Actions variable | Default | Effect |
+| Item | Identifier | Status |
 |---|---|---|
-| `PUBLIC_STRIPE_CHECKOUT_ENABLED` | `false` | Checkout remains disabled unless this value is exactly `true`. |
-| `PUBLIC_STRIPE_PAYMENT_LINK` | empty | Must be an HTTPS URL beginning with `https://buy.stripe.com/` or `https://checkout.stripe.com/`. An invalid or empty value leaves checkout disabled. |
-| `PUBLIC_STRIPE_PRODUCT_LABEL` | `Commercial support` | Controls the planned commercial-product label on the site. |
+| Product | `prod_V7MV4FUvszux4z` — Clipwell Launch License | Live, not advertised |
+| One-time price | `price_1U77mVEVzFnhjdMp7In8STcw` — USD 19.00 | Live |
+| Payment Link | `plink_1U77n7EVzFnhjdMpBy2ZR8HQ` | **Deactivated** |
+| Fulfillment webhook | `we_1U78MZEVzFnhjdMp4KI5DsK6` | Enabled, points to the deployed fulfillment Worker |
 
-To activate the link after all commercial decisions are final, create these as repository **Actions variables** under GitHub repository settings, not as secrets. The Pages workflow passes them to the website build. A later deployment will show the checkout link only when both the enable flag and an allowlisted Stripe URL are present.
+The product title does not imply that purchase revokes, supersedes, or grants exclusive rights in MIT-covered source. The final marketed offering must identify the original paid value, managed delivery, support scope, and update access that the buyer receives.
 
-> Keep `STRIPE_SECRET_KEY`, restricted API keys, and webhook signing secrets out of this static GitHub Pages site. A future server-backed checkout flow may use those secrets on a protected backend, but the current page is designed for a public Stripe Payment Link only.
+## Fulfillment Architecture
+
+Stripe Checkout remains hosted by Stripe. The public site never receives card data or Stripe secret keys. A verified `checkout.session.completed` webhook reaches the Clipwell fulfillment Worker, which validates the `Stripe-Signature` against a Worker secret, records the event idempotently in D1, creates one entitlement, and issues a short-lived portal token. The buyer is also redirected to a Worker-hosted completion page that waits for the verified webhook record and then grants immediate secure portal access.
+
+The buyer portal streams a DMG only after an active entitlement and a valid one-time download grant are present. Commercial DMGs live in a private R2 bucket. The Worker handles re-download requests without revealing whether an entered email address owns a purchase. A succeeded Stripe refund marks the entitlement refunded and prevents future grants; it cannot recall a binary that was already downloaded.
+
+## Customer Terms Already Chosen
+
+| Topic | Current decision |
+|---|---|
+| Support contact | `support@getclipwell.com` |
+| Refund window | 30 days |
+| Price | USD 19.00 one-time purchase |
+| Checkout provider | Stripe-hosted Payment Link |
+| Source-rights boundary | Existing MIT rights and notices remain preserved |
+
+## Mandatory Launch Inputs Still Missing
+
+Do not reactivate checkout or publish a purchase button until these facts exist and are verified.
+
+| Required item | Why it blocks launch |
+|---|---|
+| Seller legal name, jurisdiction, and business/postal address | Required for accurate terms, consumer disclosures, invoices, privacy notices, and refund handling. |
+| Final paid entitlement | The actual original paid value, support scope, update access, exclusions, and delivery commitment must be truthful. |
+| Transactional email provider credentials and authenticated sender | The fulfillment Worker cannot send the delivery or re-download email until this is configured. |
+| Private commercial DMG and release record | The portal has no active commercial artifact yet and must not deliver the historic public release as a paid-exclusive file. |
+| Sandbox and live acceptance results | Payment, webhook, portal, download, refund, receipt, and support flows must be tested before live sale. |
+| Tax and privacy decision | The seller must decide whether to use Stripe Tax and publish the applicable privacy and sales terms. |
+
+## Activation Sequence
+
+1. Finalize and publish counsel-reviewed seller information, privacy policy, terms of sale, refund process, tax treatment, and precise paid entitlement.
+2. Configure an authenticated transactional email sender and store only its API key in the Worker secret store.
+3. Produce a commercial build with material original value, retain `LICENSE` and `NOTICE.md`, sign/notarize it, and place the DMG in private R2 storage.
+4. Add and activate the release record in D1. Verify direct bucket access is not public.
+5. Configure the Payment Link post-payment redirect to the deployed Worker’s `/purchase/complete?session_id={CHECKOUT_SESSION_ID}` route.
+6. Run the documented Stripe sandbox tests. Then run a controlled live test and verify the event, entitlement, immediate portal access, email, receipt, re-download, and refund revocation.
+7. Update the public marketing-site variables only after all prior steps pass, then reactivate the Payment Link.
+
+## Public Site Safety Gate
+
+The static site may contain only the non-secret values below. It must remain disabled until the activation sequence is complete.
+
+| Variable | Required launch value |
+|---|---|
+| `PUBLIC_STRIPE_CHECKOUT_ENABLED` | `true` only after acceptance tests pass |
+| `PUBLIC_STRIPE_PAYMENT_LINK` | The active Stripe Payment Link URL |
+| `PUBLIC_STRIPE_PRODUCT_LABEL` | Buyer-facing final product label |
+
+Never add Stripe secret keys, webhook signing secrets, customer data, Worker tokens, R2 credentials, or email-provider credentials to the static site, GitHub Actions public variables, or a client-side bundle.

@@ -1,36 +1,46 @@
 # Clipwell Release Process
 
-Clipwell ships signed and notarized DMGs through [GitHub Releases](https://github.com/lioneltchami/clipwell/releases). Each stable release also publishes `appcast.xml`, which Sparkle uses for in-app updates.
+Clipwell’s application source and GitHub releases are private. Future commercial DMGs must be signed, notarized, and delivered through the Clipwell buyer portal rather than anonymous GitHub release URLs. The historic v1.0.0 and v1.0.1 public releases remain an MIT-era baseline; do not describe them as exclusive commercial artifacts.
 
 ## Versioning
 
-Use semantic versioning: `vMAJOR.MINOR.PATCH`. The first Clipwell release is `v1.0.0`.
+Use semantic versioning: `vMAJOR.MINOR.PATCH`.
 
 - Increment `PATCH` for compatible bug fixes.
 - Increment `MINOR` for compatible features.
 - Increment `MAJOR` for incompatible user-facing, update, or automation changes.
-- Use GitHub prereleases for preview builds, such as `v1.1.0-beta.1`.
+- Use private GitHub prereleases for internal preview builds.
 
-## Stable Release Checklist
+## Commercial Release Checklist
 
 1. Confirm `swiftlint lint` has no errors or warnings, the full test suite passes, and the Release build succeeds.
-2. Confirm the documentation, website, app icon, version notes, and migration notes are accurate.
-3. Verify these repository Actions secrets exist: `APPLE_CERTIFICATE_BASE64`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_TEAM_ID`, `APPLE_ID`, `APPLE_ID_PASSWORD`, `SPARKLE_PUBLIC_EDDSA_KEY`, and `SPARKLE_PRIVATE_EDDSA_KEY`.
-4. Create a **draft GitHub Release** from the intended `main` commit with a new tag such as `v1.0.1`. Write clear release notes.
-5. Publish the release. The `Build and Release` workflow then archives the app, signs it with Developer ID, notarizes and staples it, creates a DMG, signs the DMG for Sparkle, generates `appcast.xml`, and uploads both files to that release.
-6. Confirm the workflow passes, the release contains `Clipwell-[version]-arm64.dmg` and `appcast.xml`, and both direct public URLs return HTTP 200.
-7. Install the DMG on a clean macOS user account and validate first launch, permissions, update detection, and update installation.
+2. Confirm the commercial release contains real original paid value beyond the historic MIT-covered public baseline. Preserve `LICENSE` and `NOTICE.md` in every distribution that includes covered material.
+3. Confirm the documentation, buyer-facing product copy, support scope, refund policy, and seller disclosures are accurate.
+4. Verify the Apple signing and notarization secrets used by the existing private release workflow.
+5. Build, sign, notarize, staple, and Sparkle-sign the DMG through the private release workflow. A private GitHub Release may retain the build-team artifact, but it is **not** the customer delivery channel.
+6. Compute and record the DMG SHA-256 checksum.
+7. Upload the DMG to the private `clipwell-commercial-releases` R2 bucket under a versioned key, such as `commercial/1.1.0/Clipwell-1.1.0.dmg`. Do not enable a public bucket URL.
+8. Insert or activate the corresponding `releases` record in the `clipwell-fulfillment` D1 database. Record the commercial channel, version, object key, SHA-256 checksum, and attachment-safe filename.
+9. Confirm `https://clipwell-fulfillment.apoti.workers.dev/appcast.xml` provides an informational update notice only. It must not expose a public DMG enclosure.
+10. Test buyer portal download, re-download, expiry, refund revocation, Gatekeeper/notarization, code signing, checksum, and the Sparkle informational update path.
+11. Only after the checkout, webhook, release record, private object, transactional email, and buyer-flow tests pass may the live Payment Link be reactivated.
 
-## Releasing an Existing Draft or Published Release
+## Sparkle Policy
 
-The stable workflow supports manual recovery through **Actions → Build and Release → Run workflow**. Enter the version without the `v` prefix, for example `1.0.0`. The existing matching GitHub Release tag must already exist. The workflow rebuilds, notarizes, regenerates the appcast, and replaces that release’s DMG and `appcast.xml` assets.
+New commercial builds use the Clipwell fulfillment appcast. The appcast sends buyers to the secure portal when a commercial update exists. It does not contain a public DMG enclosure.
 
-Use this path only to repair release automation or rebuild the same source intentionally. For a product change, create a new semantic version and GitHub Release instead.
+Do not reintroduce `github.com/lioneltchami/clipwell/releases/latest/download/appcast.xml` as `SUFeedURL`. A private GitHub release is for the build team and cannot act as an anonymous buyer update service.
 
-## Pre-releases
-
-Creating a GitHub prerelease triggers `Build Pre-release`, which builds and uploads a signed DMG to that prerelease. Pre-releases are not part of the stable Sparkle feed. Do not treat a prerelease artifact as a notarized stable release without separately verifying its intended distribution policy.
+An authenticated in-app automatic-update channel requires device registration, buyer tokens, rotation, revocation policy, and a separate security review. Until then, keep the Sparkle flow informational and use the buyer portal for commercial update downloads.
 
 ## Release Ownership
 
-GitHub Releases are Clipwell’s authoritative distribution channel. The website’s Download links target the latest GitHub Release. If an official Homebrew formula is introduced later, document its repository, tap ownership, and release procedure here before advertising it.
+| Surface | Purpose | Access |
+|---|---|---|
+| Private `lioneltchami/clipwell` repository | Source, CI, signing, and internal release traceability | Build team only |
+| Private GitHub Release | Build-team artifact and release notes | Build team only |
+| Private R2 bucket | Versioned commercial DMGs | Fulfillment Worker only |
+| Clipwell fulfillment Worker | Webhook verification, entitlements, portal, downloads, and informational appcast | Public routes with buyer authorization where required |
+| Public marketing site | Product information and, after launch acceptance, the Stripe purchase button | Public |
+
+No release should claim to revoke or replace rights already granted for MIT-covered material. Consult qualified counsel before final terms of sale, seller disclosures, consumer rights, and tax treatment are published.

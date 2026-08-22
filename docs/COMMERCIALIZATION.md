@@ -1,40 +1,52 @@
 # Commercialization Status and Policy
 
-> **Status: draft policy — no paid Clipwell plan, commercial license, support agreement, price, refund policy, or purchase flow is currently available.**
+> **Status: private-delivery infrastructure is deployed, but commercial sales are not live.** The live $19.00 Stripe Payment Link is deactivated and unadvertised. Final seller disclosures, a truthful paid entitlement, transactional email, an original commercial release, and production acceptance tests remain required before purchase can be offered.
 
-Clipwell’s current public release is distributed under the MIT License in [`LICENSE`](../LICENSE). The repository preserves the upstream BetterCapture attribution in [`NOTICE.md`](../NOTICE.md). This document describes how a future commercial offering can coexist with those obligations; it is not a current offer, contract, or substitute for legal advice.
+Clipwell includes MIT-covered material and preserves the upstream BetterCapture attribution in [`NOTICE.md`](../NOTICE.md). This document records the current distribution boundary; it is not a customer contract, final commercial license, tax advice, or legal advice.
 
-## What the MIT Release Means
+## What the Historic MIT Release Means
 
-The MIT License permits use, modification, distribution, sublicensing, and sale of covered software, subject to preserving the copyright and permission notice in copies or substantial portions of that software. A paid Clipwell distribution therefore cannot withdraw the rights already granted for MIT-covered components.
+The MIT License permits use, modification, distribution, sublicensing, and sale of covered software subject to preserving the copyright and permission notice in copies or substantial portions of that software. Publicly released MIT rights cannot be withdrawn by later making the repository private, removing a public release, or offering a paid download channel.
 
-Any future commercial offer must retain the upstream MIT notice for distributed code and components covered by it. The project must not represent an MIT-derived build as exclusively proprietary, or imply that the original copyright holder endorses Clipwell.
+The v1.0.0 and v1.0.1 public releases are historical MIT-era releases. The application repository is now private for future development and release handling, but that privacy change does not make old copies exclusive or erase prior grants. Any Clipwell distribution containing substantial MIT-covered material must preserve `LICENSE` and `NOTICE.md` and must not imply upstream endorsement.
 
-## Commercial Paths Under Consideration
+## Current Distribution Surfaces
 
-| Path | Possible value | MIT compatibility requirement |
+| Surface | Status | Purpose |
 |---|---|---|
-| Commercial support | Installation help, response commitments, migration assistance, and procurement support | The underlying MIT release remains available under its existing terms. |
-| Team services | Managed updates, deployment guidance, security review coordination, or administrative tooling | The service agreement must describe the service separately from the MIT-covered app. |
-| Original add-ons | New original modules, integrations, or hosted features developed independently for Clipwell | License scope and distribution boundaries must be clear; notices for included MIT code still remain. |
-| Paid updates | Access to a supported release channel or support period | The offer must not misrepresent the continuing MIT rights of the public codebase. |
+| Private `lioneltchami/clipwell` repository | Active | Future source, internal CI, signing, and build traceability |
+| Private GitHub releases | Active | Build-team artifacts only; not buyer delivery |
+| Private R2 release bucket | Active | Future signed/notarized commercial DMGs |
+| Fulfillment Worker | Active | Stripe signature verification, idempotent entitlement creation, buyer portal, one-time download grants, refund revocation, and an informational appcast |
+| Public marketing site | Active, checkout disabled | Product information only until launch requirements are met |
+| Stripe Payment Link | Deactivated | Held for future verified launch |
 
-## Required Decisions Before Selling
+## Paid-Offer Boundary
 
-Before any paid CTA, checkout link, price, or entitlement is published, the project owner must decide and document the following.
+A buyer may pay for genuine original value such as a proprietary add-on, a materially improved original commercial build, a managed and supported release channel, defined support services, or hosted capabilities. The paid offer must state that value plainly. It must not claim that the buyer is purchasing the right to use MIT-covered source or that the seller can restrict rights already granted by MIT.
 
-| Decision | Required publication |
+| Potential paid value | Required truthfulness condition |
 |---|---|
-| Seller identity and jurisdiction | Legal entity or individual seller name and contact address. |
-| What is sold | Exact package, support scope, add-on scope, or service description. |
-| Price and currency | Final amount, billing cadence, tax handling, and any renewal terms. |
-| Refund and cancellation rules | Clear policy, jurisdiction-specific consumer disclosures where required, and contact method. |
-| Support commitment | Support channel, response target, hours, exclusions, and term length. |
-| Privacy | Whether any paid service collects account, payment, device, or usage data beyond the local app. |
-| License boundary | Which material stays MIT-covered and which original material is offered under a separate agreement. |
+| Original add-ons or hosted features | Identify the original material and retain notices for incorporated MIT components. |
+| Managed commercial release channel | Describe delivery, update access, support scope, and any time limit without claiming exclusivity over historic MIT code. |
+| Commercial support | Define channel, response expectations, exclusions, and duration; do not imply support that is not staffed. |
+| Team or deployment services | Treat the service agreement as separate from the MIT license for the application code. |
 
-## Release and Website Rules
+## Decisions Still Required Before Sales
 
-The website may describe commercial work as **planned** or **to be announced** while these decisions remain unresolved. It must not show invented prices, purchase buttons, customer claims, service-level commitments, or compatibility guarantees. The current public download must remain clearly labelled as the MIT-licensed release.
+| Decision | Current state |
+|---|---|
+| Seller identity, jurisdiction, and address | Not supplied; blocks terms and consumer disclosures. |
+| Final customer entitlement | Not defined; blocks truthful product copy. |
+| Refund policy | 30-day refund window approved; operating workflow still requires final seller terms. |
+| Buyer support contact | `support@getclipwell.com` supplied; mailbox and operating process must be ready. |
+| Transactional delivery email | Provider credentials and authenticated sender not configured. |
+| Privacy and tax posture | Not finalized. |
+| Paid commercial DMG | Not yet produced or placed in the private release bucket. |
+| Production acceptance | Not yet run end to end. |
 
-When commercial terms are final, replace the draft pricing content, publish a reviewed commercial agreement, update the privacy policy as necessary, and obtain jurisdiction-appropriate legal review before accepting payment.
+## Public-Website Rule
+
+The public site must keep checkout disabled and must not display a $19 paid claim until the paid entitlement, seller disclosures, privacy and tax policy, delivery email, release artifact, and tests are complete. Static-site variables may contain only the public Stripe Payment Link and display labels; all secret material belongs in the fulfillment Worker’s secret store.
+
+When the launch requirements are complete, obtain jurisdiction-appropriate legal review, update the public site and customer terms together, complete a controlled live purchase and refund test, then reactivate the Payment Link. Until then, the correct public position is that commercial delivery is in preparation, not that the historic MIT application has become exclusive paid software.

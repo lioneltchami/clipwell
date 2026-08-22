@@ -11,7 +11,7 @@
 	<key>NSScreenCaptureUsageDescription</key>
 	<string>Clipwell needs access to screen recording to capture your screen content.</string>
 	<key>SUFeedURL</key>
-	<string>https://github.com/lioneltchami/clipwell/releases/latest/download/appcast.xml</string>
+	<string>https://clipwell-fulfillment.apoti.workers.dev/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>SPARKLE_PUBLIC_KEY</string>
 	<key>SUEnableInstallerLauncherService</key>
