@@ -95,7 +95,10 @@ struct RecordingPresetsSettingsView: View {
             }
 
             Section {
-                Text("A preset captures portable video, audio, camera, countdown, overlay, and content-filter settings. It does not change your selected screen, window, capture area, device selection, or output folder.")
+                Text(
+                    "A preset captures portable video, audio, camera, countdown, overlay, and content-filter settings. " +
+                        "It does not change your selected screen, window, capture area, device selection, or output folder."
+                )
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
