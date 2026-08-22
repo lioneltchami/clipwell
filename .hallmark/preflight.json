@@ -1,7 +1,14 @@
 {
-  "scanned": "2026-08-20",
-  "framework": "Astro 5 + Svelte 5 + Tailwind v4",
-  "fonts": "Space Grotesk + Inter + JetBrains Mono (Cobalt)",
-  "palette": "Cobalt OKLCH tokens in website/tokens.css",
-  "motion": "IntersectionObserver reveal + hero type-in + ⌘K palette"
+  "scanned": "2026-08-21",
+  "target": "website",
+  "framework": "Astro 5 with Svelte 5 and Tailwind v4",
+  "fontStack": ["Inter", "JetBrains Mono"],
+  "palette": "Dark warm-neutral OKLCH with coral accent",
+  "motion": "CSS-only reveal transitions; no motion library installed",
+  "spacing": "4-point-derived custom-property scale",
+  "existingMacrostructure": "Workbench",
+  "existingNavigation": "N5 Floating pill",
+  "existingFooter": "Ft5 Statement",
+  "preserve": ["font tokens", "palette tokens", "spacing scale", "motion reduction support", "authentic product screenshots"],
+  "avoid": ["repeated screenshot ownership", "cropped screenshot decoration", "faux browser chrome"]
 }

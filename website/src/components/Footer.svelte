@@ -4,47 +4,41 @@
 </script>
 
 <footer class="foot">
-  <p class="line">Record locally. Ship the clip. Keep the rest private.</p>
-  <div class="meta">
-    <span class="wordmark">Clipwell</span>
-    <nav aria-label="Footer">
-      <a href="https://github.com/lioneltchami/clipwell">GitHub</a>
+  <div class="foot__line">
+    <span class="foot__brand">Clipwell</span>
+    <nav aria-label="Footer navigation">
+      <a href="https://github.com/lioneltchami/clipwell">Source</a>
       <a href={`${home}privacy-policy`}>Privacy</a>
-      <a href="https://github.com/lioneltchami/clipwell/releases/latest">Download</a>
+      <a href="https://github.com/lioneltchami/clipwell/releases/latest">Release</a>
     </nav>
-    <span class="copy">© 2026 · MIT</span>
+    <span class="foot__meta">© 2026 · MIT licensed</span>
   </div>
 </footer>
 
 <style>
   .foot {
-    padding: var(--space-3xl) var(--page-gutter) var(--space-xl);
     max-width: var(--page-max);
     margin: 0 auto;
+    padding: var(--space-xl) var(--page-gutter);
   }
 
-  .line {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4.5vw, 3rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    color: var(--color-ink);
-    max-width: 18ch;
-    margin: 0 0 var(--space-xl);
-  }
-
-  .meta {
-    display: grid;
-    gap: var(--space-md);
+  .foot__line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-lg);
+    align-items: center;
     padding-top: var(--space-lg);
     border-top: var(--rule-hair) solid var(--color-rule);
+    color: var(--color-ink-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
   }
 
-  .wordmark {
-    font-family: var(--font-display);
-    font-weight: 600;
+  .foot__brand {
     color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
   }
 
   nav {
@@ -54,27 +48,21 @@
   }
 
   nav a {
-    font-size: var(--text-sm);
-    color: var(--color-ink-2);
+    white-space: nowrap;
   }
 
   nav a:hover {
     color: var(--color-accent);
   }
 
-  .copy {
-    font-size: var(--text-xs);
-    color: var(--color-ink-3);
+  .foot__meta {
+    margin-inline-start: auto;
   }
 
-  @media (min-width: 40rem) {
-    .meta {
-      grid-template-columns: auto 1fr auto;
-      align-items: baseline;
-    }
-
-    nav {
-      justify-content: center;
+  @media (max-width: 34rem) {
+    .foot__meta {
+      width: 100%;
+      margin-inline-start: 0;
     }
   }
 </style>

@@ -55,7 +55,7 @@
     <p class="mono-label">Interactive tour</p>
     <h2 id="demo-title">Pick the job. See the real control surface.</h2>
     <p>
-      These are authentic Clipwell states, not a simulated browser window. Choose a task to inspect the controls that make that workflow possible.
+      Each state is pulled from the native app. Choose a task to inspect the controls that make that workflow possible.
     </p>
   </div>
 
@@ -141,6 +141,7 @@
     font: inherit;
     font-size: var(--text-sm);
     cursor: pointer;
+    white-space: nowrap;
     transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
   }
 
@@ -172,7 +173,7 @@
     width: 100%;
     height: auto;
     border-radius: var(--radius-sm);
-    box-shadow: 0 20px 40px -28px oklch(0% 0 0 / 0.8);
+    box-shadow: 0 20px 40px -28px var(--color-shadow-strong);
   }
 
   figcaption {
@@ -218,7 +219,7 @@
     width: fit-content;
   }
 
-  @media (max-width: 38rem) {
+  @media (max-width: 48rem) {
     .demo__picker {
       grid-template-columns: 1fr;
     }

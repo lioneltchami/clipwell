@@ -17,7 +17,7 @@ const {
 	title,
 	description,
 	canonicalUrl,
-	ogImage = 'https://github.com/lioneltchami/clipwell/raw/main/website/public/screenshot-basic.png',
+	ogImage = 'https://github.com/lioneltchami/clipwell/raw/main/website/public/clipwell-og.png',
 	lang = 'en',
 	robots = 'index, follow',
 	structuredData = []
@@ -54,10 +54,10 @@ const base = import.meta.env.BASE_URL;
 		<meta name="color-scheme" content="dark" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-			rel="stylesheet"
-		/>
+			<link
+				href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+				rel="stylesheet"
+			/>
 		{structuredData.map((data) => (
 			<script type="application/ld+json" set:html={JSON.stringify(data)} />
 		))}
