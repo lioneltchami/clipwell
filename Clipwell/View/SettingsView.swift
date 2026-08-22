@@ -28,6 +28,10 @@ struct SettingsView: View {
                 AudioSettingsView(settings: settings)
             }
 
+            Tab("Presets", systemImage: "slider.horizontal.3") {
+                RecordingPresetsSettingsView(settings: settings)
+            }
+
             Tab("Shortcuts", systemImage: "keyboard") {
                 ShortcutsSettingsView()
             }

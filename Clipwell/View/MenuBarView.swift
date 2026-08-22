@@ -135,6 +135,8 @@ struct MenuBarView: View {
 
             // Settings Sections
             Group {
+                RecordingPresetsMenuSection(settings: viewModel.settings)
+
                 VideoSettingsSection(settings: viewModel.settings)
 
                 PresenterOverlaySettingsSection(

@@ -402,6 +402,110 @@ struct SettingsStoreTests {
         #expect(store.captureNativeResolution == false)
     }
 
+    // MARK: - Recording Presets
+
+    @Test func recordingPresetCapturesAndAppliesPortableSettings() {
+        let store = makeStore()
+        store.containerFormat = .mov
+        store.videoCodec = .proRes422
+        store.audioCodec = .pcm
+        store.frameRate = .fps24
+        store.videoQuality = .high
+        store.captureHDR = true
+        store.captureNativeResolution = false
+        store.captureMicrophone = true
+        store.captureSystemAudio = true
+        store.showPostRecordingSheet = false
+        store.recordingCountdownSeconds = 5
+        store.showClickHighlighter = true
+        store.showKeystrokeOverlay = true
+        store.enableAnnotationLayer = true
+        store.showCursor = false
+        store.showWallpaper = false
+        store.showMenuBar = false
+        store.showDock = false
+        store.showWindowShadows = false
+        store.showClipwell = true
+
+        let preset = store.saveRecordingPreset(named: "Product Demo")
+
+        store.containerFormat = .mp4
+        store.videoCodec = .h264
+        store.audioCodec = .aac
+        store.frameRate = .fps60
+        store.videoQuality = .low
+        store.captureHDR = false
+        store.captureNativeResolution = true
+        store.captureMicrophone = false
+        store.captureSystemAudio = false
+        store.showPostRecordingSheet = true
+        store.recordingCountdownSeconds = 0
+        store.showClickHighlighter = false
+        store.showKeystrokeOverlay = false
+        store.enableAnnotationLayer = false
+        store.showCursor = true
+        store.showWallpaper = true
+        store.showMenuBar = true
+        store.showDock = true
+        store.showWindowShadows = true
+        store.showClipwell = false
+
+        store.applyRecordingPreset(preset)
+
+        #expect(store.containerFormat == .mov)
+        #expect(store.videoCodec == .proRes422)
+        #expect(store.audioCodec == .pcm)
+        #expect(store.frameRate == .fps24)
+        #expect(store.videoQuality == .high)
+        #expect(store.captureHDR == true)
+        #expect(store.captureNativeResolution == false)
+        #expect(store.captureMicrophone == true)
+        #expect(store.captureSystemAudio == true)
+        #expect(store.showPostRecordingSheet == false)
+        #expect(store.recordingCountdownSeconds == 5)
+        #expect(store.showClickHighlighter == true)
+        #expect(store.showKeystrokeOverlay == true)
+        #expect(store.enableAnnotationLayer == true)
+        #expect(store.showCursor == false)
+        #expect(store.showWallpaper == false)
+        #expect(store.showMenuBar == false)
+        #expect(store.showDock == false)
+        #expect(store.showWindowShadows == false)
+        #expect(store.showClipwell == true)
+    }
+
+    @Test func recordingPresetNamesRemainUnique() {
+        let store = makeStore()
+
+        let first = store.saveRecordingPreset(named: "Demo")
+        let second = store.saveRecordingPreset(named: "Demo")
+        let third = store.saveRecordingPreset(named: " ")
+
+        #expect(first.name == "Demo")
+        #expect(second.name == "Demo 2")
+        #expect(third.name == "Recording Preset")
+    }
+
+    @Test func recordingPresetsPersistAcrossStoreInstances() {
+        let suiteName = "com.lionel.ClipwellTests.\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        let firstStore = SettingsStore(defaults: defaults)
+        let savedPreset = firstStore.saveRecordingPreset(named: "Tutorial")
+        let secondStore = SettingsStore(defaults: defaults)
+
+        #expect(secondStore.recordingPresets == [savedPreset])
+    }
+
+    @Test func deletingRecordingPresetRemovesOnlyMatchingPreset() {
+        let store = makeStore()
+        let first = store.saveRecordingPreset(named: "Demo")
+        let second = store.saveRecordingPreset(named: "Tutorial")
+
+        store.deleteRecordingPreset(first)
+
+        #expect(store.recordingPresets == [second])
+    }
+
     // MARK: - Complex Cascade Scenarios
 
     @Test func mp4ToProRes4444CascadesCorrectly() {
