@@ -180,8 +180,8 @@
     width: 0.5rem;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: oklch(78% 0.17 150);
-    box-shadow: 0 0 0 0.2rem oklch(78% 0.17 150 / 0.16);
+    background: var(--color-ok);
+    box-shadow: 0 0 0 0.2rem var(--color-ok-soft);
   }
 
   dl {
