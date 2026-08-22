@@ -8,7 +8,9 @@
     label: string;
     title: string;
     caption: string;
-    image: string;
+    media: 'image' | 'video';
+    source: string;
+    poster?: string;
     alt: string;
     steps: string[];
   };
@@ -20,7 +22,8 @@
       title: 'Start from the menu bar. Keep the take local.',
       caption:
         'Use the recorder controls to choose your display and capture system audio or your microphone before you press record.',
-      image: asset('screenshot-basic.png'),
+      media: 'image',
+      source: asset('screenshot-basic.png'),
       alt: 'Clipwell recording controls with built-in Retina display and microphone enabled',
       steps: ['Choose a display or area', 'Enable system audio or microphone', 'Record directly to your folder']
     },
@@ -30,8 +33,10 @@
       title: 'Exclude what should not be in the capture.',
       caption:
         'Keep your menu bar, dock, cursor, wallpaper, and Clipwell itself under control before recording a reproducible bug report.',
-      image: asset('screenshot-content-filter-clipwell.png'),
-      alt: 'Clipwell content-filter controls including a Show Clipwell toggle',
+      media: 'video',
+      source: asset('clipwell-content-filter-rectangular.mp4'),
+      poster: asset('clipwell-demo-keyframe.png'),
+      alt: 'Clipwell Content Filter controls showing capture options as a rectangular product panel',
       steps: ['Keep or hide desktop context', 'Control cursor and window shadows', 'Capture only the proof you need']
     },
     {
@@ -40,7 +45,8 @@
       title: 'Choose a format that fits the handoff.',
       caption:
         'Set frame rate and encoding for a lightweight clip, then trim or export a GIF after the take without sending your file to a service.',
-      image: asset('screenshot-frame-rate.png'),
+      media: 'image',
+      source: asset('screenshot-frame-rate.png'),
       alt: 'Clipwell frame-rate and encoding settings',
       steps: ['Set frame rate and codec', 'Trim the completed take', 'Export a GIF when a clip is enough']
     }
@@ -76,9 +82,23 @@
   <div class="demo__stage frame reveal" aria-live="polite">
     <figure class="demo__image">
       {#key activeTask.id}
-        <img src={activeTask.image} alt={activeTask.alt} width="1280" height="800" />
+        {#if activeTask.media === 'video'}
+          <video
+            controls
+            muted
+            loop
+            playsinline
+            poster={activeTask.poster}
+            aria-label={activeTask.alt}
+          >
+            <source src={activeTask.source} type="video/mp4" />
+            Your browser does not support the Clipwell product demo video.
+          </video>
+        {:else}
+          <img src={activeTask.source} alt={activeTask.alt} width="1280" height="800" />
+        {/if}
       {/key}
-      <figcaption>Authentic Clipwell product state · {activeTask.label}</figcaption>
+      <figcaption>{activeTask.media === 'video' ? 'Clipwell product demo' : 'Authentic Clipwell product state'} · {activeTask.label}</figcaption>
     </figure>
 
     <div class="demo__copy">
@@ -169,10 +189,14 @@
       var(--color-paper-3);
   }
 
-  .demo__image img {
+  .demo__image img,
+  .demo__image video {
+    display: block;
     width: 100%;
     height: auto;
     border-radius: var(--radius-sm);
+    clip-path: none;
+    object-fit: contain;
     box-shadow: 0 20px 40px -28px var(--color-shadow-strong);
   }
 
