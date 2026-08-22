@@ -14,7 +14,7 @@ Use semantic versioning: `vMAJOR.MINOR.PATCH`.
 ## Commercial Release Checklist
 
 1. Confirm `swiftlint lint` has no errors or warnings, the full test suite passes, and the Release build succeeds.
-2. Confirm the commercial release contains real original paid value beyond the historic MIT-covered public baseline. Preserve `LICENSE` and `NOTICE.md` in every distribution that includes covered material.
+2. Confirm the commercial release contains the original **Recording Presets** feature beyond the historic MIT-covered public baseline. Preserve `LICENSE` and `NOTICE.md` in every distribution that includes covered material.
 3. Confirm the documentation, buyer-facing product copy, support scope, refund policy, and seller disclosures are accurate.
 4. Verify the Apple signing and notarization secrets used by the existing private release workflow.
 5. Build, sign, notarize, staple, and Sparkle-sign the DMG through the private release workflow. A private GitHub Release may retain the build-team artifact, but it is **not** the customer delivery channel.
@@ -22,7 +22,7 @@ Use semantic versioning: `vMAJOR.MINOR.PATCH`.
 7. Upload the DMG to the private `clipwell-commercial-releases` R2 bucket under a versioned key, such as `commercial/1.1.0/Clipwell-1.1.0.dmg`. Do not enable a public bucket URL.
 8. Insert or activate the corresponding `releases` record in the `clipwell-fulfillment` D1 database. Record the commercial channel, version, object key, SHA-256 checksum, and attachment-safe filename.
 9. Confirm `https://clipwell-fulfillment.apoti.workers.dev/appcast.xml` provides an informational update notice only. It must not expose a public DMG enclosure.
-10. Test buyer portal download, re-download, expiry, refund revocation, Gatekeeper/notarization, code signing, checksum, and the Sparkle informational update path.
+10. Test buyer portal download, re-download, refund revocation, Gatekeeper/notarization, code signing, checksum, Recording Presets save/apply behavior, and the Sparkle informational update path.
 11. Only after the checkout, webhook, release record, private object, transactional email, and buyer-flow tests pass may the live Payment Link be reactivated.
 
 ## Sparkle Policy

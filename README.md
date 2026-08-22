@@ -38,9 +38,9 @@ Sparkle uses a public **informational** appcast at `https://clipwell-fulfillment
 
 ## Commercial Status
 
-The Stripe Product, $19 one-time Price, fulfillment Worker, private D1 database, private R2 bucket, and Stripe webhook exist, but the live Payment Link is intentionally deactivated. The public site must not advertise a paid purchase until the seller identity, terms, tax/privacy position, original paid entitlement, transactional email, commercial release artifact, and end-to-end acceptance tests are complete.
+The Stripe Product, $19 one-time Price, fulfillment Worker, private D1 database, private R2 bucket, and Stripe webhook exist, but the live Payment Link is intentionally deactivated. The original paid entitlement is **Recording Presets**: named reusable capture setups for video, audio, camera, countdown, overlay, and content-filter settings. The public site must not advertise a paid purchase until seller terms, tax/privacy position, verified transactional email, a signed/notarized commercial release artifact, and end-to-end acceptance tests are complete.
 
-The approved buyer support contact is `support@getclipwell.com`, and the intended refund window is 30 days. These facts do not substitute for final sales terms. See the [commercialization policy](./docs/COMMERCIALIZATION.md) and [Stripe fulfillment guide](./docs/STRIPE_CHECKOUT.md).
+The approved buyer support contact is `support@getclipwell.com`; the Launch Package includes best-effort purchase and installation support for 30 days and a 30-day refund window, with no future-update term promised. These facts do not substitute for final sales terms. See the [commercialization policy](./docs/COMMERCIALIZATION.md) and [Stripe fulfillment guide](./docs/STRIPE_CHECKOUT.md).
 
 ## Documentation
 

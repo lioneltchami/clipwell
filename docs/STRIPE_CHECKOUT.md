@@ -13,6 +13,8 @@
 
 The product title does not imply that purchase revokes, supersedes, or grants exclusive rights in MIT-covered source. The final marketed offering must identify the original paid value, managed delivery, support scope, and update access that the buyer receives.
 
+For the first launch, the paid value is **Recording Presets**: customers can save and apply named portable capture setups for video, audio, camera, countdown, overlay, and content-filter settings. The USD 19.00 one-time Launch Package includes the signed/notarized commercial build containing that feature, secure buyer delivery, best-effort purchase and installation support for 30 days, and a 30-day refund window. It does not promise a future-update term.
+
 ## Fulfillment Architecture
 
 Stripe Checkout remains hosted by Stripe. The public site never receives card data or Stripe secret keys. A verified `checkout.session.completed` webhook reaches the Clipwell fulfillment Worker, which validates the `Stripe-Signature` against a Worker secret, records the event idempotently in D1, creates one entitlement, and issues a short-lived portal token. The buyer is also redirected to a Worker-hosted completion page that waits for the verified webhook record and then grants immediate secure portal access.
@@ -36,15 +38,15 @@ Do not reactivate checkout or publish a purchase button until these facts exist 
 | Required item | Why it blocks launch |
 |---|---|
 | Seller legal name, jurisdiction, and business/postal address | Required for accurate terms, consumer disclosures, invoices, privacy notices, and refund handling. |
-| Final paid entitlement | The actual original paid value, support scope, update access, exclusions, and delivery commitment must be truthful. |
-| Transactional email provider credentials and authenticated sender | The fulfillment Worker cannot send the delivery or re-download email until this is configured. |
-| Private commercial DMG and release record | The portal has no active commercial artifact yet and must not deliver the historic public release as a paid-exclusive file. |
+| Final paid entitlement | Defined as Recording Presets, secure delivery of the commercial build, best-effort purchase and installation support for 30 days, and a 30-day refund window. Final customer terms must state that no future-update term is promised. |
+| Transactional email sender verification | Resend is selected, but `getclipwell.com` must complete DNS verification before `Clipwell <downloads@getclipwell.com>` can send fulfillment email. |
+| Private commercial DMG and release record | Recording Presets is implemented, but the portal has no signed/notarized commercial artifact yet and must not deliver the historic public release as a paid-exclusive file. |
 | Sandbox and live acceptance results | Payment, webhook, portal, download, refund, receipt, and support flows must be tested before live sale. |
 | Tax and privacy decision | The seller must decide whether to use Stripe Tax and publish the applicable privacy and sales terms. |
 
 ## Activation Sequence
 
-1. Finalize and publish counsel-reviewed seller information, privacy policy, terms of sale, refund process, tax treatment, and precise paid entitlement.
+1. Finalize and publish counsel-reviewed seller information for Apoti Tech Inc., privacy policy, terms of sale, refund process, tax treatment, and the Recording Presets Launch Package entitlement.
 2. Configure an authenticated transactional email sender and store only its API key in the Worker secret store.
 3. Produce a commercial build with material original value, retain `LICENSE` and `NOTICE.md`, sign/notarize it, and place the DMG in private R2 storage.
 4. Add and activate the release record in D1. Verify direct bucket access is not public.

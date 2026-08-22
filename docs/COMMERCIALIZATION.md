@@ -25,6 +25,8 @@ The v1.0.0 and v1.0.1 public releases are historical MIT-era releases. The appli
 
 A buyer may pay for genuine original value such as a proprietary add-on, a materially improved original commercial build, a managed and supported release channel, defined support services, or hosted capabilities. The paid offer must state that value plainly. It must not claim that the buyer is purchasing the right to use MIT-covered source or that the seller can restrict rights already granted by MIT.
 
+The first proposed **Clipwell Launch Package** is a USD 19.00 one-time purchase of a signed and notarized commercial build that includes the original **Recording Presets** feature. Recording Presets lets a customer save and apply named portable capture setups for video, audio, camera, countdown, overlay, and content-filter settings. The package also includes secure buyer delivery, best-effort purchase and installation support for 30 days at `support@getclipwell.com`, and a 30-day refund window. It does not promise a future-update term.
+
 | Potential paid value | Required truthfulness condition |
 |---|---|
 | Original add-ons or hosted features | Identify the original material and retain notices for incorporated MIT components. |
@@ -36,13 +38,13 @@ A buyer may pay for genuine original value such as a proprietary add-on, a mater
 
 | Decision | Current state |
 |---|---|
-| Seller identity, jurisdiction, and address | Not supplied; blocks terms and consumer disclosures. |
-| Final customer entitlement | Not defined; blocks truthful product copy. |
+| Seller identity, jurisdiction, and address | Stripe account identifies **Apoti Tech Inc.**, Calgary, Alberta, Canada. Final public terms must use the exact legal business address on the Stripe account and be reviewed before publication. |
+| Final customer entitlement | Defined for launch: Recording Presets, secure delivery of the purchased commercial build, best-effort purchase and installation support for 30 days, and a 30-day refund window. No future-update term is promised. |
 | Refund policy | 30-day refund window approved; operating workflow still requires final seller terms. |
 | Buyer support contact | `support@getclipwell.com` supplied; mailbox and operating process must be ready. |
 | Transactional delivery email | Provider credentials and authenticated sender not configured. |
 | Privacy and tax posture | Not finalized. |
-| Paid commercial DMG | Not yet produced or placed in the private release bucket. |
+| Paid commercial DMG | Recording Presets is implemented, but a signed/notarized commercial DMG has not yet been produced or placed in the private release bucket. |
 | Production acceptance | Not yet run end to end. |
 
 ## Public-Website Rule
