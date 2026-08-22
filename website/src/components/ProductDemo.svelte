@@ -23,7 +23,7 @@
       caption:
         'Use the recorder controls to choose your display and capture system audio or your microphone before you press record.',
       media: 'image',
-      source: asset('screenshot-basic.png'),
+      source: asset('clipwell-walkthrough-rectangular.webp'),
       alt: 'Clipwell recording controls with built-in Retina display and microphone enabled',
       steps: ['Choose a display or area', 'Enable system audio or microphone', 'Record directly to your folder']
     },
@@ -35,7 +35,7 @@
         'Keep your menu bar, dock, cursor, wallpaper, and Clipwell itself under control before recording a reproducible bug report.',
       media: 'video',
       source: asset('clipwell-content-filter-rectangular.mp4'),
-      poster: asset('clipwell-demo-keyframe.png'),
+      poster: asset('clipwell-demo-keyframe.webp'),
       alt: 'Clipwell Content Filter controls showing capture options as a rectangular product panel',
       steps: ['Keep or hide desktop context', 'Control cursor and window shadows', 'Capture only the proof you need']
     },
@@ -46,7 +46,7 @@
       caption:
         'Set frame rate and encoding for a lightweight clip, then trim or export a GIF after the take without sending your file to a service.',
       media: 'image',
-      source: asset('screenshot-frame-rate.png'),
+      source: asset('clipwell-frame-rate-rectangular.webp'),
       alt: 'Clipwell frame-rate and encoding settings',
       steps: ['Set frame rate and codec', 'Trim the completed take', 'Export a GIF when a clip is enough']
     }
@@ -174,6 +174,7 @@
 
   .demo__stage {
     display: grid;
+    border-radius: 0;
     background: var(--color-paper-2);
   }
 
@@ -183,10 +184,7 @@
     align-content: start;
     gap: var(--space-sm);
     padding: var(--space-lg);
-    background:
-      radial-gradient(100% 110% at 10% 0%, var(--color-grain-a), transparent 62%),
-      radial-gradient(90% 90% at 90% 100%, var(--color-grain-c), transparent 55%),
-      var(--color-paper-3);
+    background: var(--color-paper-3);
   }
 
   .demo__image img,
@@ -194,7 +192,7 @@
     display: block;
     width: 100%;
     height: auto;
-    border-radius: var(--radius-sm);
+    border-radius: 0;
     clip-path: none;
     object-fit: contain;
     box-shadow: 0 20px 40px -28px var(--color-shadow-strong);
