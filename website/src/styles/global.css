@@ -107,26 +107,32 @@ button:focus-visible {
 	overflow: hidden;
 }
 
+/*
+ * Reveal animation — JS-optional.
+ * Default state: fully visible (opacity 1, no transform).
+ * When JS adds `data-reveal="ready"` to <html>, .reveal items become hidden
+ * until they intersect the viewport, then animate in. If JS fails, the
+ * page is fully readable.
+ */
 .reveal {
-	opacity: 0;
-	transform: translateY(10px);
+	opacity: 1;
+	transform: none;
 	transition:
 		opacity var(--dur-slow) var(--ease-out),
 		transform var(--dur-slow) var(--ease-out);
 }
 
-.reveal.is-in {
+:root[data-reveal='ready'] .reveal {
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+:root[data-reveal='ready'] .reveal.is-in {
 	opacity: 1;
 	transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.reveal {
-		opacity: 1;
-		transform: none;
-		transition: none;
-	}
-
 	* {
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;

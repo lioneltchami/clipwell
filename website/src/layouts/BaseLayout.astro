@@ -69,8 +69,15 @@ const base = import.meta.env.BASE_URL;
 		<slot />
 		<Footer client:load base={base} />
 		<script>
+			// Reveal animation is JS-optional — see global.css.
+			// Only opt in to the hidden-then-fade-in animation when JS runs.
+			const root = document.documentElement;
+			const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			const nodes = document.querySelectorAll('.reveal');
-			if (nodes.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (!nodes.length || prefersReducedMotion) {
+				nodes.forEach((n) => n.classList.add('is-in'));
+			} else {
+				root.setAttribute('data-reveal', 'ready');
 				const io = new IntersectionObserver(
 					(entries) => {
 						for (const entry of entries) {
@@ -83,8 +90,6 @@ const base = import.meta.env.BASE_URL;
 					{ threshold: 0.12 }
 				);
 				nodes.forEach((n) => io.observe(n));
-			} else {
-				nodes.forEach((n) => n.classList.add('is-in'));
 			}
 		</script>
 	</body>

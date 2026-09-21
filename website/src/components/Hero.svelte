@@ -103,10 +103,10 @@
         </ul>
       </div>
 
-      <button type="button" class="picker__cta">
+      <a class="picker__cta" href={`${home}install`}>
         <span class="picker__rec-dot" aria-hidden="true"></span>
         Start recording
-      </button>
+      </a>
       <p class="picker__foot">All toggles default on except Camera overlay. The capture ends with a file in the folder you choose.</p>
     </aside>
   </div>
