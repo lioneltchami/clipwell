@@ -3,7 +3,9 @@
 
   async function copyBrew() {
     try {
-      await navigator.clipboard.writeText('brew install --cask clipwell');
+      await navigator.clipboard.writeText(
+        'brew tap lioneltchami/clipwell && brew install --cask clipwell'
+      );
       copied = true;
       setTimeout(() => (copied = false), 1800);
     } catch {
@@ -25,7 +27,7 @@
         <a class="btn-ghost" href="#demo">See the capture flow →</a>
       </div>
       <div class="brew frame">
-        <code>brew install --cask clipwell</code>
+        <code>brew install lioneltchami/clipwell/clipwell</code>
         <button type="button" class="copy" onclick={copyBrew} aria-label="Copy Homebrew command">
           {copied ? 'Copied' : 'Copy'}
         </button>
