@@ -23,7 +23,7 @@
         name: 'Clipwell-1.1.0-arm64.dmg',
         browser_download_url:
           'https://github.com/lioneltchami/clipwell/releases/download/v1.1.0/Clipwell-1.1.0-arm64.dmg',
-        size: 4_000_000
+        size: 3_727_340
       }
     ]
   };
