@@ -1,5 +1,8 @@
 <script lang="ts">
+  let { base = '/' }: { base?: string } = $props();
   let copied = $state(false);
+
+  const home = base.endsWith('/') ? base : `${base}/`;
 
   async function copyBrew() {
     try {
@@ -24,7 +27,7 @@
       </p>
       <div class="hero__cta">
         <a class="btn-primary" href="https://github.com/lioneltchami/clipwell/releases/latest">Download Clipwell</a>
-        <a class="btn-ghost" href="#demo">See the capture flow →</a>
+        <a class="btn-ghost" href={`${home}features`}>See the capture flow →</a>
       </div>
       <div class="brew frame">
         <code>brew install lioneltchami/clipwell/clipwell</code>

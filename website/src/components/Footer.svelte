@@ -1,16 +1,40 @@
 <script lang="ts">
   let { base = '/' }: { base?: string } = $props();
   const home = base.endsWith('/') ? base : `${base}/`;
+
+  const groups = [
+    {
+      label: 'Product',
+      links: [
+        { label: 'Features', href: `${home}features` },
+        { label: 'Use cases', href: `${home}use-cases` },
+        { label: 'Install', href: `${home}install` },
+        { label: 'Changelog', href: `${home}changelog` }
+      ]
+    },
+    {
+      label: 'Project',
+      links: [
+        { label: 'Open source', href: `${home}open-source` },
+        { label: 'Privacy', href: `${home}privacy-policy` },
+        { label: 'Source', href: 'https://github.com/lioneltchami/clipwell' },
+        { label: 'Release', href: 'https://github.com/lioneltchami/clipwell/releases/latest' }
+      ]
+    }
+  ];
 </script>
 
 <footer class="foot">
   <div class="foot__line">
     <span class="foot__brand">Clipwell</span>
-    <nav aria-label="Footer navigation">
-      <a href="https://github.com/lioneltchami/clipwell">Source</a>
-      <a href={`${home}privacy-policy`}>Privacy</a>
-      <a href="https://github.com/lioneltchami/clipwell/releases/latest">Release</a>
-    </nav>
+    {#each groups as group}
+      <nav aria-label={`Footer navigation · ${group.label}`}>
+        <span class="foot__group-label">{group.label}</span>
+        {#each group.links as link}
+          <a href={link.href}>{link.label}</a>
+        {/each}
+      </nav>
+    {/each}
     <span class="foot__meta">© 2026 · MIT licensed</span>
   </div>
 </footer>
@@ -44,6 +68,7 @@
   nav {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--space-md);
   }
 
@@ -55,11 +80,16 @@
     color: var(--color-accent);
   }
 
+  .foot__group-label {
+    color: var(--color-ink-3);
+    margin-right: var(--space-2xs);
+  }
+
   .foot__meta {
     margin-inline-start: auto;
   }
 
-  @media (max-width: 34rem) {
+  @media (max-width: 60rem) {
     .foot__meta {
       width: 100%;
       margin-inline-start: 0;

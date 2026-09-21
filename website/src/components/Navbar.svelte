@@ -8,15 +8,21 @@
   const home = base.endsWith('/') ? base : `${base}/`;
   const commands = $derived([
     { id: 'download', label: 'Download for macOS', href: 'https://github.com/lioneltchami/clipwell/releases/latest', hint: 'GitHub' },
-    { id: 'demo', label: 'Inspect the product controls', href: '#demo', hint: 'Page' },
-    { id: 'workflow', label: 'View the capture sequence', href: '#workflow', hint: 'Page' },
-    { id: 'release', label: 'View the signed release', href: '#download', hint: 'Page' },
-    { id: 'pricing', label: 'View the open-source license', href: '#pricing', hint: 'Page' },
-    { id: 'source', label: 'Inspect the source', href: 'https://github.com/lioneltchami/clipwell', hint: 'GitHub' },
-    { id: 'privacy', label: 'Read the privacy policy', href: `${home}privacy-policy`, hint: 'Page' }
+    { id: 'install', label: 'Install Clipwell', href: `${home}install`, hint: 'Page' },
+    { id: 'features', label: 'Browse the feature reference', href: `${home}features`, hint: 'Page' },
+    { id: 'codecs', label: 'Read the codec & container guide', href: `${home}features#codec-title`, hint: 'Page' },
+    { id: 'shortcuts', label: 'See the keyboard shortcuts', href: `${home}features#shortcuts-title`, hint: 'Page' },
+    { id: 'scheme', label: 'View the URL-scheme actions', href: `${home}features#scheme-title`, hint: 'Page' },
+    { id: 'use-cases', label: 'Read the use cases', href: `${home}use-cases`, hint: 'Page' },
+    { id: 'changelog', label: 'Read the changelog', href: `${home}changelog`, hint: 'Page' },
+    { id: 'open-source', label: 'Read the open-source license', href: `${home}open-source`, hint: 'Page' },
+    { id: 'privacy', label: 'Read the privacy policy', href: `${home}privacy-policy`, hint: 'Page' },
+    { id: 'source', label: 'Inspect the source on GitHub', href: 'https://github.com/lioneltchami/clipwell', hint: 'GitHub' }
   ]);
 
-  let filtered = $derived(commands.filter((command) => command.label.toLowerCase().includes(query.trim().toLowerCase())));
+  let filtered = $derived(
+    commands.filter((command) => command.label.toLowerCase().includes(query.trim().toLowerCase()))
+  );
 
   function openPalette() {
     open = true;
@@ -29,12 +35,18 @@
     open = false;
   }
 
+  function isInternal(href: string) {
+    return href.startsWith(home) || href.startsWith('#');
+  }
+
   function run(index = active) {
     const item = filtered[index];
     if (!item) return;
     closePalette();
     if (item.href.startsWith('#')) {
       document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+    } else if (isInternal(item.href)) {
+      window.location.href = item.href;
     } else {
       window.location.href = item.href;
     }
@@ -73,9 +85,10 @@
   <div class="nav__inner">
     <a class="nav__brand" href={home}>Clipwell</a>
     <nav class="nav__center" aria-label="Main navigation">
-      <a href="#demo">Controls</a>
-      <a href="#workflow">Workflow</a>
-      <a href="#pricing">License</a>
+      <a href={`${home}features`}>Features</a>
+      <a href={`${home}use-cases`}>Use cases</a>
+      <a href={`${home}open-source`}>License</a>
+      <a href={`${home}changelog`}>Changelog</a>
     </nav>
     <div class="nav__actions">
       <button type="button" class="nav__search" onclick={openPalette} aria-label="Search the Clipwell site">

@@ -1,4 +1,7 @@
 <script lang="ts">
+  let { base = '/' }: { base?: string } = $props();
+  const home = base.endsWith('/') ? base : `${base}/`;
+
   const stages = [
     {
       number: '01',
@@ -50,7 +53,7 @@
     {/each}
   </ol>
 
-  <a class="workflow__cta btn-ghost reveal" href="#download">Start with the current release →</a>
+  <a class="workflow__cta btn-ghost reveal" href={`${base}install`}>Start with the current release →</a>
 </section>
 
 <style>

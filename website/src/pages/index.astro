@@ -9,9 +9,11 @@ import TrustSection from '../components/TrustSection.svelte';
 import PricingPreview from '../components/PricingPreview.svelte';
 import FAQSection from '../components/FAQSection.svelte';
 import CTASection from '../components/CTASection.svelte';
+import DiveDeeper from '../components/DiveDeeper.svelte';
 
 const siteUrl = 'https://lioneltchami.github.io/clipwell';
 const repo = 'https://github.com/lioneltchami/clipwell';
+const base = import.meta.env.BASE_URL;
 
 const structuredData = [
 	{
@@ -97,15 +99,16 @@ const structuredData = [
 		<meta name="author" content="Lionel Tchami" />
 	</Fragment>
 
-		<main id="main">
-			<Hero client:load />
-			<ProductDemo client:visible />
-			<WorkbenchSection client:visible />
-			<SpecSection client:visible />
-			<ReleaseDownload client:visible />
-			<TrustSection client:visible />
-			<PricingPreview client:visible />
-			<FAQSection client:visible />
-			<CTASection client:visible />
-		</main>
+	<main id="main">
+		<Hero client:load base={base} />
+		<ProductDemo client:visible />
+		<WorkbenchSection client:visible base={base} />
+		<SpecSection client:visible />
+		<ReleaseDownload client:visible />
+		<TrustSection client:visible />
+		<PricingPreview client:visible />
+		<FAQSection client:visible />
+		<DiveDeeper client:visible base={base} />
+		<CTASection client:visible />
+	</main>
 </BaseLayout>
