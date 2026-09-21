@@ -1,0 +1,568 @@
+{
+  "project": "BetterCapture",
+  "source": "Mobbin MCP (search_screens + search_sections)",
+  "generated_at": "2026-09-21",
+  "notes": {
+    "platform_scope": "Mobbin indexes iOS and web (plus marketing site sections). Native macOS-only apps are largely absent from the catalog.",
+    "catalog_gaps": [
+      "CleanShot X",
+      "ScreenFlow",
+      "Bartender",
+      "Ice",
+      "Dozer",
+      "Droplr",
+      "HandBrake",
+      "OBS Studio (app UI)",
+      "DaVinci Resolve",
+      "Raycast (app UI / marketing site)",
+      "Cal.com",
+      "Plausible Analytics",
+      "Ollama"
+    ],
+    "substitution_policy": "Where a named app is not on Mobbin, closest indexed analogs are included and tagged with requested_apps_proxied_for.",
+    "title_policy": "Mobbin MCP does not return official screen titles; screen_title values are descriptive titles derived from visible UI chrome / section headlines."
+  },
+  "counts": {
+    "screen_recorder_capture": 10,
+    "macos_menu_bar_dropdowns": 8,
+    "codec_settings_panes": 8,
+    "hero_pricing_download_cta": 10,
+    "open_source_mit_framing": 10,
+    "total_references": 46
+  },
+  "categories": [
+    {
+      "id": "screen_recorder_capture",
+      "name": "Screen-recorder / capture tools",
+      "intent": "Capture flows, floating toolbars, post-record overlays",
+      "requested_apps": [
+        "Loom",
+        "CleanShot X",
+        "ScreenFlow",
+        "Bartender",
+        "Raycast",
+        "Droplr"
+      ],
+      "references": [
+        {
+          "app_name": "Loom",
+          "screen_title": "Canvas capture setup with Start Recording panel",
+          "mobbin_url": "https://mobbin.com/screens/96664708-cd8b-43bd-86c9-27efe0f69202",
+          "platform": "web",
+          "type": "screen",
+          "demonstrates": "Pre-record floating panel (source/camera/mic toggles) + canvas background picker + dual pill control bars for stop/pause and layout tools."
+        },
+        {
+          "app_name": "Loom",
+          "screen_title": "Recording setup panel over Community feed",
+          "mobbin_url": "https://mobbin.com/screens/40bb7031-536d-44a5-9d71-fdd4f22d8642",
+          "platform": "web",
+          "type": "screen",
+          "demonstrates": "Compact vertical capture launcher with On/Off device states, orange Start Recording CTA, and dark floating session toolbar."
+        },
+        {
+          "app_name": "Loom",
+          "screen_title": "Cancel recording confirmation overlay",
+          "mobbin_url": "https://mobbin.com/screens/3746e62f-8281-4b31-bf7d-ba5b8e219986",
+          "platform": "web",
+          "type": "screen",
+          "demonstrates": "Destructive post-capture decision modal (Restart / Resume / Cancel recording) with educational footer tip about Rewind."
+        },
+        {
+          "app_name": "Loom",
+          "screen_title": "Post-record trim overlay with waveform",
+          "mobbin_url": "https://mobbin.com/screens/27643e2e-5c94-40d3-9b11-1e4a2052de11",
+          "platform": "web",
+          "type": "screen",
+          "demonstrates": "Immediate trim modal after capture: player + waveform handle + Fit waveform zoom + Exit/Trim actions over blurred library."
+        },
+        {
+          "app_name": "Loom",
+          "screen_title": "Team Introduction — full edit timeline",
+          "mobbin_url": "https://mobbin.com/screens/829ee044-a529-4c26-9c74-6fbff98f1ee0",
+          "platform": "web",
+          "type": "screen",
+          "demonstrates": "Post-record editor rhythm: Split/Delete/Add clip, duration delta (e.g. 3:04→2:45), transcript edit entry, Save and exit CTA."
+        },
+        {
+          "app_name": "Loom",
+          "screen_title": "My Library — recording settings + floating controls",
+          "mobbin_url": "https://mobbin.com/screens/2afa79d7-90b0-4644-8a77-66bdc85f1167",
+          "platform": "web",
+          "type": "screen",
+          "demonstrates": "Settings popover (video quality Auto/720p/1080p + countdown/controls toggles) paired with always-visible capture pill bar."
+        },
+        {
+          "app_name": "Loom",
+          "screen_title": "Team Introduction — playback with transcript correct overlay",
+          "mobbin_url": "https://mobbin.com/screens/a51ef2c7-34d5-4d61-932d-206be1c4259d",
+          "platform": "web",
+          "type": "screen",
+          "demonstrates": "Post-record consumption surface: reactions, AI summary, transcript edit popover (Correct/Delete word), and mobile download banner CTA."
+        },
+        {
+          "app_name": "Descript",
+          "screen_title": "Export / share overlay (Audio tab)",
+          "mobbin_url": "https://mobbin.com/screens/8d9aab65-159e-4ad7-afb7-15846d30e1d6",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "ScreenFlow",
+            "Droplr"
+          ],
+          "demonstrates": "Post-record share panel with segmented Audio/Timeline/Transcript/Subtitles tabs, destination/access dropdowns, Published state, and Copy link."
+        },
+        {
+          "app_name": "Vimeo",
+          "screen_title": "New Recording — camera & background settings",
+          "mobbin_url": "https://mobbin.com/screens/41b368f1-896e-454e-97ab-740b721d3c61",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "CleanShot X"
+          ],
+          "demonstrates": "Pre-record stage: 1080p badge, blur/background preset grid, floating mic/camera/screen-share bar, and red Record CTA."
+        },
+        {
+          "app_name": "Riverside",
+          "screen_title": "Video editor — Export Options modal",
+          "mobbin_url": "https://mobbin.com/screens/ee0beb67-600e-4f0c-bb1b-3d925d08ba1a",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "ScreenFlow"
+          ],
+          "demonstrates": "Post-capture export overlay with Video/Audio tabs, 4K quality dropdown, processing toggles, and Export video CTA over timeline."
+        }
+      ]
+    },
+    {
+      "id": "macos_menu_bar_dropdowns",
+      "name": "macOS menu-bar apps — dropdown layouts & separator discipline",
+      "intent": "Compact dropdowns, grouped actions, hairline separators, destructive isolation",
+      "requested_apps": [
+        "Bartender",
+        "Ice",
+        "Dozer",
+        "Droplr"
+      ],
+      "references": [
+        {
+          "app_name": "Etsy",
+          "screen_title": "Account dropdown with grouped separators",
+          "mobbin_url": "https://mobbin.com/screens/0c6dce7f-4bea-44df-bccc-d516dc87221d",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "Bartender",
+            "Ice",
+            "Dozer"
+          ],
+          "demonstrates": "Classic menu-bar-like account menu: header identity, icon+label rows, hairline separators between Activity / Commerce / System groups, Sign out last."
+        },
+        {
+          "app_name": "Slack",
+          "screen_title": "Profile menu with Pause notifications flyout",
+          "mobbin_url": "https://mobbin.com/screens/3d490c9c-2ff9-4fa4-8a9f-09d5bc78b7ea",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "Bartender",
+            "Ice"
+          ],
+          "demonstrates": "Anchored profile popover + nested DND flyout (status header → Resume / Adjust time / schedule). Strong separator and cascade discipline for utility menus."
+        },
+        {
+          "app_name": "Slack",
+          "screen_title": "Profile menu — Pause notifications On cascade",
+          "mobbin_url": "https://mobbin.com/screens/499aa83f-17e0-4b0f-bde1-60fa3777cb6d",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "Dozer"
+          ],
+          "demonstrates": "Menu item with trailing On > state opening a secondary panel; illustrates active-state disclosure without reopening the parent menu."
+        },
+        {
+          "app_name": "Notion",
+          "screen_title": "Workspace switcher menu (Getting Started)",
+          "mobbin_url": "https://mobbin.com/screens/a535975a-c988-47a1-89fd-a5bf46a0123a",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "Bartender",
+            "Droplr"
+          ],
+          "demonstrates": "Dense utility dropdown: plan badge, Settings/Invite, multi-workspace list, Get Mac/iOS app links, then Help/Trash — clear sectional rhythm."
+        },
+        {
+          "app_name": "Laravel Cloud",
+          "screen_title": "Source control — connected account overflow menu",
+          "mobbin_url": "https://mobbin.com/screens/ec08f97b-89fa-4bfa-a6b1-100c4bb488ed",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "Ice",
+            "Dozer"
+          ],
+          "demonstrates": "Dark compact overflow (Manage / Reauthorize / Disconnect) with icon-leading rows — pattern for hazardous disconnect isolated at bottom."
+        },
+        {
+          "app_name": "Patreon",
+          "screen_title": "Collection overflow — destructive actions in red",
+          "mobbin_url": "https://mobbin.com/screens/d990ccf7-6d4d-410a-bc7e-9924a65ff325",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "Droplr"
+          ],
+          "demonstrates": "Meatball menu with safe actions first, then red Stop selling / Delete — separator + color discipline for destructive items."
+        },
+        {
+          "app_name": "Linktree",
+          "screen_title": "Account management card overflow menu",
+          "mobbin_url": "https://mobbin.com/screens/490b7801-95c9-4abd-9dbd-d67db33e38ea",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "Bartender"
+          ],
+          "demonstrates": "Card-scoped menu (Switch / Change username / Links / Design / Settings) with Delete isolated in red — portable to menu-bar list rows."
+        },
+        {
+          "app_name": "Charma",
+          "screen_title": "Action item context menu with metadata header",
+          "mobbin_url": "https://mobbin.com/screens/4f0c0f96-031c-450a-beed-e0c8cec25768",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "Ice"
+          ],
+          "demonstrates": "Long action list with gray metadata header band, icon rows, and Delete tinted at bottom — separator discipline via whitespace + color."
+        }
+      ]
+    },
+    {
+      "id": "codec_settings_panes",
+      "name": "Codec / settings panes",
+      "intent": "Codec picker grids, quality/resolution controls, export settings density",
+      "requested_apps": [
+        "HandBrake",
+        "FFmpeg UI",
+        "OBS",
+        "DaVinci Resolve"
+      ],
+      "references": [
+        {
+          "app_name": "Loom",
+          "screen_title": "Recording Settings — Video quality dropdown",
+          "mobbin_url": "https://mobbin.com/screens/7c1a1525-918c-458e-9c12-2f0ac2982cb7",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "OBS"
+          ],
+          "demonstrates": "Compact quality picker (Auto / 1080p / 720p) with helper copy plus behavioral toggles — lightweight codec UX for capture tools."
+        },
+        {
+          "app_name": "VEED",
+          "screen_title": "Edit Video — Advanced export settings",
+          "mobbin_url": "https://mobbin.com/screens/31a6f2f9-8ff9-4c2a-a5ab-da6a51d2b9ef",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "HandBrake",
+            "DaVinci Resolve"
+          ],
+          "demonstrates": "Advanced pane stacking framerate slider, Resolution, Quality, Compression dropdowns, and full-width Export Video CTA."
+        },
+        {
+          "app_name": "Riverside",
+          "screen_title": "Export Options — quality + processing toggles",
+          "mobbin_url": "https://mobbin.com/screens/ee0beb67-600e-4f0c-bb1b-3d925d08ba1a",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "HandBrake"
+          ],
+          "demonstrates": "Modal codec-adjacent controls: 2160p 4K selector, watermark/noise toggles, Video vs Audio tabs — HandBrake-like option grouping without CLI density."
+        },
+        {
+          "app_name": "Descript",
+          "screen_title": "Export — Audio local WAV format",
+          "mobbin_url": "https://mobbin.com/screens/3f7d13c0-d62a-4728-9b4a-a592ae3e5cb2",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "FFmpeg UI"
+          ],
+          "demonstrates": "Format dropdown as codec stand-in (Lossless WAV), Destination Local export, Advanced accordion — FFmpeg-UI-lite pattern."
+        },
+        {
+          "app_name": "Descript",
+          "screen_title": "Export — Transcript toggles + nested timecode popover",
+          "mobbin_url": "https://mobbin.com/screens/d64d5b2c-0c8c-46c5-8be1-9fec14ecea75",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "OBS",
+            "DaVinci Resolve"
+          ],
+          "demonstrates": "Dense toggle grid with nested settings popover (interval, paragraph breaks, offset) — nested pane pattern common in OBS/Resolve."
+        },
+        {
+          "app_name": "Leonardo AI",
+          "screen_title": "AI Creation — model picker + quality grid",
+          "mobbin_url": "https://mobbin.com/screens/93080b42-e2bc-4673-9141-502174ef84cc",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "HandBrake"
+          ],
+          "demonstrates": "Codec-picker analog: thumbnail list of engines with feature chips, Unlimited badges, plus 720p/1080p segmented quality and aspect-ratio icon grid."
+        },
+        {
+          "app_name": "Luma AI",
+          "screen_title": "Keyframe settings overlay (duration / 1080p / model)",
+          "mobbin_url": "https://mobbin.com/screens/82b1f9cb-22fd-4071-b918-07c81f48813f",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "DaVinci Resolve"
+          ],
+          "demonstrates": "Frosted settings chip row for technical params (5s, 1080p, Ray2) inside tabbed Describe/Keyframe/Reference flow."
+        },
+        {
+          "app_name": "Telegram",
+          "screen_title": "Stream With… — OBS/x264 integration modal",
+          "mobbin_url": "https://mobbin.com/screens/532aab8b-63b3-4b65-9461-e4fbb5aa3454",
+          "platform": "web",
+          "type": "screen",
+          "requested_apps_proxied_for": [
+            "OBS",
+            "FFmpeg UI"
+          ],
+          "demonstrates": "Explicit OBS/FFmpeg handoff: RTMPS URL + masked stream key with copy, software encoding (x264) guidance, Start Streaming CTA."
+        }
+      ]
+    },
+    {
+      "id": "hero_pricing_download_cta",
+      "name": "Hero / pricing / download CTA patterns",
+      "intent": "Hero rhythm, primary/secondary CTA placement, download CTAs",
+      "requested_apps": [
+        "Linear",
+        "Raycast",
+        "Vercel",
+        "Supabase"
+      ],
+      "references": [
+        {
+          "app_name": "Linear",
+          "screen_title": "Marketing homepage hero — product UI below fold",
+          "mobbin_url": "https://mobbin.com/screens/b7c17da1-eac4-4a8d-b7e9-2b8d6ef30f66",
+          "platform": "web",
+          "type": "screen",
+          "demonstrates": "Dark hero rhythm: brand + nav, single Sign up pill CTA top-right, large headline/subhead, product UI as primary visual (no cluttered first-viewport cards)."
+        },
+        {
+          "app_name": "Linear",
+          "screen_title": "Pricing section (site)",
+          "mobbin_url": "https://mobbin.com/sites/sections/27001485-8428-4f37-b7c8-be4ac9461bb2",
+          "platform": "web",
+          "type": "section",
+          "demonstrates": "Linear pricing rhythm — plan comparison with clear CTA hierarchy matching marketing typography."
+        },
+        {
+          "app_name": "Linear",
+          "screen_title": "Pricing / plans supporting section",
+          "mobbin_url": "https://mobbin.com/sites/sections/a39bce12-4af5-4698-88ec-841c18f453d4",
+          "platform": "web",
+          "type": "section",
+          "demonstrates": "Secondary pricing narrative block reinforcing plan CTAs and whitespace discipline."
+        },
+        {
+          "app_name": "Vercel",
+          "screen_title": "Homepage hero — Start Deploying / Get a Demo",
+          "mobbin_url": "https://mobbin.com/sites/sections/c2faadf7-61c1-4753-ad0a-f4de00f5a916",
+          "platform": "web",
+          "type": "section",
+          "demonstrates": "Centered dual-CTA pattern: solid primary Start Deploying vs outline Get a Demo under short value prop."
+        },
+        {
+          "app_name": "Vercel",
+          "screen_title": "Homepage hero — Contact Sales / Explore the Product",
+          "mobbin_url": "https://mobbin.com/sites/sections/5dbae9cb-19d9-4e78-a89d-75c27ffb5e55",
+          "platform": "web",
+          "type": "section",
+          "demonstrates": "Asymmetric hero: bold left headline, right copy+CTAs, metric trust strip directly under fold."
+        },
+        {
+          "app_name": "Vercel",
+          "screen_title": "Out-of-the-box support mid-page CTA",
+          "mobbin_url": "https://mobbin.com/sites/sections/918111cc-0e15-4a62-942b-57715e278a2a",
+          "platform": "web",
+          "type": "section",
+          "demonstrates": "Repeated primary/secondary CTA rhythm below feature grid — conversion without reloading hero."
+        },
+        {
+          "app_name": "Supabase",
+          "screen_title": "Homepage hero — Start a project / See documentation",
+          "mobbin_url": "https://mobbin.com/sites/sections/6d6921ce-b43a-4232-9ebd-966b1338c349",
+          "platform": "web",
+          "type": "section",
+          "demonstrates": "Dark split hero with green primary CTA, ghost docs CTA, and nav-level Start your project duplication."
+        },
+        {
+          "app_name": "Cursor",
+          "screen_title": "Download for Mac / Windows hero",
+          "mobbin_url": "https://mobbin.com/sites/sections/31066e29-9f55-4a93-9875-9a861c1f71a7",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Raycast"
+          ],
+          "demonstrates": "Desktop-download CTA pattern (Mac/Windows) — closest Mobbin analog to Raycast-style download heroes."
+        },
+        {
+          "app_name": "Wispr Flow",
+          "screen_title": "Download for Mac CTA section",
+          "mobbin_url": "https://mobbin.com/sites/sections/e0030809-614c-4bcb-9c53-746c90165df9",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Raycast"
+          ],
+          "demonstrates": "Single-platform Download for Mac button as primary conversion — menu-bar/desktop product marketing pattern."
+        },
+        {
+          "app_name": "Superhuman Mail",
+          "screen_title": "Download for desktop CTA",
+          "mobbin_url": "https://mobbin.com/sites/sections/22c4a41a-e376-4f11-9715-90c38b813fa1",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Raycast"
+          ],
+          "demonstrates": "Premium desktop download CTA with supporting copy — hero-to-install conversion for power-user tools."
+        }
+      ]
+    },
+    {
+      "id": "open_source_mit_framing",
+      "name": "Open-source / free / MIT framing",
+      "intent": "License badge rhythm, GitHub star CTAs, free/OSS program framing",
+      "requested_apps": [
+        "Cal.com",
+        "Supabase",
+        "Plausible",
+        "Ollama"
+      ],
+      "references": [
+        {
+          "app_name": "Supabase",
+          "screen_title": "Hero — Open Source SQL Database",
+          "mobbin_url": "https://mobbin.com/sites/sections/0eb5722a-4576-49bd-9d04-b2d9556690fc",
+          "platform": "web",
+          "type": "section",
+          "demonstrates": "Open Source as first words of H1, Star us on GitHub in nav, green Start a project CTA — OSS identity as hero-level signal."
+        },
+        {
+          "app_name": "Supabase",
+          "screen_title": "Join one of the world's fastest growing open source communities",
+          "mobbin_url": "https://mobbin.com/sites/sections/a4ec9576-ae8f-4c87-8b4b-ce9c59c61b4c",
+          "platform": "web",
+          "type": "section",
+          "demonstrates": "Community metrics grid (developers, GitHub stars, Twitter, Discord) + logo cloud — social proof via OSS community size."
+        },
+        {
+          "app_name": "Supabase",
+          "screen_title": "About — collaborative open source belief",
+          "mobbin_url": "https://mobbin.com/sites/sections/3e9e47f0-2868-4f09-bbcd-3cad018ba793",
+          "platform": "web",
+          "type": "section",
+          "demonstrates": "Mission copy underlining open source with GitHub star CTA retained in chrome — values framing beyond product features."
+        },
+        {
+          "app_name": "Greptile",
+          "screen_title": "Free for OSS projects (MIT / Apache / GPL)",
+          "mobbin_url": "https://mobbin.com/sites/sections/3acb1f30-cc02-4b04-9dbe-b6425a2b55ed",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Cal.com",
+            "Plausible"
+          ],
+          "demonstrates": "Explicit license badge rhythm: [ OPEN SOURCE ] label, MIT/Apache/GPL copy, Apply for OSS CTA beside startup discount card."
+        },
+        {
+          "app_name": "OpenAI",
+          "screen_title": "Best practices when using our badge",
+          "mobbin_url": "https://mobbin.com/sites/sections/a604d639-7a02-4ae6-b601-851e221e106b",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Ollama"
+          ],
+          "demonstrates": "Attribution badge grid (outlined light/dark preferred vs filled) + Download badges — license/badge rhythm pattern for third-party credit."
+        },
+        {
+          "app_name": "Cloudflare Workers",
+          "screen_title": "Open-weight AI models accessible via API",
+          "mobbin_url": "https://mobbin.com/sites/sections/f1bcadfa-b88e-491f-b84e-8f2e8d8476ab",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Ollama"
+          ],
+          "demonstrates": "Open-weight model cards (Llama, DeepSeek, GPT-OSS, Qwen) with logos — OSS model framing adjacent to Ollama-style catalogs."
+        },
+        {
+          "app_name": "Mistral AI",
+          "screen_title": "Pricing models table with Free models accordion",
+          "mobbin_url": "https://mobbin.com/sites/sections/ce1133d7-b1b2-4c31-ba77-389595ba042d",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Ollama"
+          ],
+          "demonstrates": "Free models called out as a dedicated accordion under paid API table — free tier framing without burying it in fine print."
+        },
+        {
+          "app_name": "Lightdash",
+          "screen_title": "Hero — only open source AI-native BI",
+          "mobbin_url": "https://mobbin.com/sites/sections/29e133de-34ee-4255-a796-b185d60e359d",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Plausible",
+            "Cal.com"
+          ],
+          "demonstrates": "Open source in primary subhead + Start for free / Try live demo dual CTAs — Plausible/Cal.com-like OSS+free conversion stack."
+        },
+        {
+          "app_name": "Lightdash",
+          "screen_title": "Our story so far — first GitHub commit timeline",
+          "mobbin_url": "https://mobbin.com/sites/sections/4a6efa26-8500-4346-a229-ba23004bce0f",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Plausible"
+          ],
+          "demonstrates": "Credibility via open-source origin story (first GitHub commit, HN launch) — narrative license/community framing."
+        },
+        {
+          "app_name": "Visitors",
+          "screen_title": "Privacy / cookieless analytics marketing section",
+          "mobbin_url": "https://mobbin.com/sites/sections/fc533c6f-fdaf-49b6-aaea-3927ac02b937",
+          "platform": "web",
+          "type": "section",
+          "requested_apps_proxied_for": [
+            "Plausible"
+          ],
+          "demonstrates": "Privacy-first analytics positioning closest to Plausible’s free/privacy framing on Mobbin."
+        }
+      ]
+    }
+  ]
+}
