@@ -1,56 +1,34 @@
-<script lang="ts">
-  const checkoutEnabled = import.meta.env.PUBLIC_STRIPE_CHECKOUT_ENABLED === 'true';
-  const paymentLink = import.meta.env.PUBLIC_STRIPE_PAYMENT_LINK?.trim() ?? '';
-  const productLabel = import.meta.env.PUBLIC_STRIPE_PRODUCT_LABEL?.trim() || 'Commercial support';
-  const checkoutConfigured = checkoutEnabled && /^https:\/\/(?:buy|checkout)\.stripe\.com\//.test(paymentLink);
-</script>
-
 <section id="pricing" class="pricing" aria-labelledby="pricing-title">
   <div class="pricing__head reveal">
-    <p class="mono-label">Commercial readiness</p>
-    <h2 id="pricing-title">Keep the core open. Price the value you add.</h2>
+    <p class="mono-label">Open source</p>
+    <h2 id="pricing-title">MIT licensed. No paid plan today.</h2>
     <p>
-      The current Clipwell release remains available under the MIT license. Commercial plans are being drafted for customers who need procurement, support, and additional services beyond the open-source core.
+      Clipwell is distributed as an open-source core under the MIT license. The current public release is free to download, sign, and audit. Commercial plans are not offered today.
     </p>
   </div>
 
   <div class="pricing__grid">
-    <article class="pricing__card frame reveal">
+    <article class="pricing__card pricing__card--solo frame reveal">
       <p class="mono-label">Current</p>
-      <h3>Open source</h3>
-      <p class="pricing__price">MIT</p>
-      <p>Build from source or download the public release. Keep the local-first recording workflow and the rights granted by the MIT license.</p>
+      <h3>Open-source core</h3>
+      <p class="pricing__price">Free · MIT</p>
+      <p>
+        Build from source or download the public release. Keep the local-first recording workflow, Sparkle auto-updates, and the rights granted by the MIT license.
+      </p>
       <ul>
-        <li>Public macOS release</li>
+        <li>Public macOS download</li>
         <li>Local files and no account</li>
         <li>Upstream MIT notices preserved</li>
       </ul>
-      <a class="btn-ghost" href="https://github.com/lioneltchami/clipwell/blob/main/LICENSE">Read the license →</a>
-    </article>
-
-    <article class="pricing__card pricing__card--featured frame reveal">
-      <p class="mono-label">Planned</p>
-      <h3>{productLabel}</h3>
-      <p class="pricing__price">To be announced</p>
-      <p>For teams that need a commercial agreement, response commitments, and managed deployment or support terms.</p>
-      <ul>
-        <li>Commercial agreement draft</li>
-        <li>Support and procurement options</li>
-        <li>Clear coexistence with MIT components</li>
-      </ul>
       <div class="pricing__actions">
-        {#if checkoutConfigured}
-          <a class="btn-primary" href={paymentLink}>Continue to secure checkout</a>
-        {:else}
-          <button class="btn-primary" type="button" disabled aria-disabled="true">Commercial checkout — coming soon</button>
-        {/if}
-        <a class="btn-ghost" href="https://github.com/lioneltchami/clipwell/blob/main/docs/COMMERCIALIZATION.md">Review the draft →</a>
+        <a class="btn-ghost" href="https://github.com/lioneltchami/clipwell/blob/main/LICENSE">Read the license →</a>
+        <a class="btn-ghost" href="https://github.com/lioneltchami/clipwell/releases/latest">Inspect release →</a>
       </div>
     </article>
   </div>
 
   <p class="pricing__fine reveal">
-    No paid plan, price, entitlement, refund policy, or commercial support commitment is live yet. Those details must be set before any purchase CTA replaces this draft.
+    No paid plan, price, entitlement, or commercial support commitment is offered for the v1.1.0 release. See the repository for source, license, and release artifacts.
   </p>
 </section>
 
@@ -93,11 +71,12 @@
     background: var(--color-paper-2);
   }
 
-  .pricing__card--featured {
+  .pricing__card--solo {
     background:
       radial-gradient(110% 100% at 100% 0%, var(--color-grain-a), transparent 58%),
       var(--color-paper-2);
     border-color: color-mix(in oklch, var(--color-accent) 56%, var(--color-rule));
+    max-width: 48rem;
   }
 
   .pricing__card p,
@@ -155,11 +134,5 @@
     color: var(--color-ink-3);
     font-size: var(--text-xs);
     max-width: 72ch;
-  }
-
-  @media (min-width: 48rem) {
-    .pricing__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 </style>

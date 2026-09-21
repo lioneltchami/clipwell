@@ -17,10 +17,6 @@
       a: 'macOS 15.2 Sequoia or later.'
     },
     {
-      q: 'Will Clipwell offer paid plans?',
-      a: 'Commercial support, services, and original add-ons are under consideration. Prices and terms are not set, so the site labels them as draft only.'
-    },
-    {
       q: 'Is Clipwell related to BetterCapture?',
       a: 'Clipwell is a renamed and extended derivative of BetterCapture. The upstream MIT notice remains preserved in the repository.'
     }

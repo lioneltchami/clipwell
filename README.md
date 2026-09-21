@@ -4,9 +4,13 @@
 
 ## Distribution Status
 
-The Clipwell source repository and future build artifacts are private. The public product site is deployed separately from the private source tree. Future paid distribution, if launched, will use a verified buyer portal and private artifact storage rather than anonymous GitHub release URLs.
+Clipwell is a public, open-source project. The current public release is free to download and distributed under the MIT license; no paid plan, checkout, or commercial entitlement is offered today. The application source, build pipeline, and release artifacts live at `https://github.com/lioneltchami/clipwell`.
 
-This privacy change does not retract historic MIT rights. The public v1.0.0 and v1.0.1 releases were MIT-era releases, and any distributed material containing substantial MIT-covered code must retain [`LICENSE`](./LICENSE) and [`NOTICE.md`](./NOTICE.md).
+The historic v1.0.0 and v1.0.1 public releases remain MIT-era baselines. Any distributed material containing substantial MIT-covered code must retain [`LICENSE`](./LICENSE) and [`NOTICE.md`](./NOTICE.md).
+
+## v1.1.0
+
+v1.1.0 is the current free public release. There is no separate changelog file in this repository — the GitHub Release body at `https://github.com/lioneltchami/clipwell/releases/tag/v1.1.0` is the source of truth for what shipped.
 
 ## Features
 
@@ -32,15 +36,11 @@ xcodebuild test \
 
 ## Updates and Releases
 
-Future commercial builds are signed, notarized, and retained in private build-team releases. Buyer delivery is handled by the Clipwell fulfillment service, which verifies payment events, creates entitlements, and streams a DMG from private artifact storage through short-lived download grants.
+v1.1.0+ uses a public Sparkle appcast hosted at the GitHub Release (`/releases/latest/download/appcast.xml`) so users get auto-updates. Each release is signed, notarized, and stapled before the DMG is published to the GitHub Release page. See [the release guide](./docs/RELEASE.md).
 
-Sparkle uses a public **informational** appcast at `https://clipwell-fulfillment.apoti.workers.dev/appcast.xml`. It may notify a buyer that an update exists, but it does not expose a public DMG enclosure. Buyer access and downloads remain in the portal until an authenticated in-app update design is separately implemented and security-reviewed. See [the release guide](./docs/RELEASE.md).
+## Commercial Staging (Deferred)
 
-## Commercial Status
-
-The Stripe Product, $19 one-time Price, fulfillment Worker, private D1 database, private R2 bucket, and Stripe webhook exist, but the live Payment Link is intentionally deactivated. The original paid entitlement is **Recording Presets**: named reusable capture setups for video, audio, camera, countdown, overlay, and content-filter settings. The public site must not advertise a paid purchase until seller terms, tax/privacy position, verified transactional email, a signed/notarized commercial release artifact, and end-to-end acceptance tests are complete.
-
-The approved buyer support contact is `support@getclipwell.com`; the Launch Package includes best-effort purchase and installation support for 30 days and a 30-day refund window, with no future-update term promised. These facts do not substitute for final sales terms. See the [commercialization policy](./docs/COMMERCIALIZATION.md) and [Stripe fulfillment guide](./docs/STRIPE_CHECKOUT.md).
+The Stripe Product, $19 one-time Price, fulfillment Worker, private D1 database, private R2 bucket, and Stripe webhook exist in the build pipeline but are not active for the free v1.1.0 release. The original paid entitlement draft was **Recording Presets** (named reusable capture setups for video, audio, camera, countdown, overlay, and content-filter settings), with `support@getclipwell.com` as the buyer support contact and a 30-day refund window. These are stage-only artifacts and do not represent a live commercial offer. See the [commercialization policy](./docs/COMMERCIALIZATION.md) and [Stripe fulfillment guide](./docs/STRIPE_CHECKOUT.md) for the deferred plan.
 
 ## Documentation
 
@@ -48,7 +48,7 @@ Technical references, architecture notes, feature specifications, manual smoke t
 
 ## Privacy
 
-Clipwell records only the content and audio sources that the user selects. Output is written to the configured local folder. The app does not require an account and does not upload recordings or telemetry. Any future buyer portal collects only the data required for purchase fulfilment and support as described in final published privacy terms.
+Clipwell records only the content and audio sources that the user selects. Output is written to the configured local folder. The app does not require an account and does not upload recordings or telemetry.
 
 ## License and Attribution
 
@@ -56,4 +56,4 @@ Clipwell contains MIT-covered material and remains subject to the [MIT License](
 
 ## Project Locations
 
-The public marketing deployment is currently hosted independently at `https://clipwell-site-1cn.pages.dev`. The application source, build pipeline, and support documentation reside in the private `lioneltchami/clipwell` repository.
+The application source, build pipeline, release artifacts, and documentation live at `https://github.com/lioneltchami/clipwell`. The public marketing site is deployed to `https://lioneltchami.github.io/clipwell`.

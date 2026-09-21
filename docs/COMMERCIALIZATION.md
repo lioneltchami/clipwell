@@ -49,6 +49,6 @@ The first proposed **Clipwell Launch Package** is a USD 19.00 one-time purchase 
 
 ## Public-Website Rule
 
-The public site must keep checkout disabled and must not display a $19 paid claim until the paid entitlement, seller disclosures, privacy and tax policy, delivery email, release artifact, and tests are complete. Static-site variables may contain only the public Stripe Payment Link and display labels; all secret material belongs in the fulfillment Worker’s secret store.
+The public site must not advertise a paid claim until the full commercial checklist passes (paid entitlement, seller disclosures, privacy and tax policy, delivery email, release artifact, and tests are complete). Static-site variables may contain only the public Stripe Payment Link and display labels; all secret material belongs in the fulfillment Worker’s secret store.
 
 When the launch requirements are complete, obtain jurisdiction-appropriate legal review, update the public site and customer terms together, complete a controlled live purchase and refund test, then reactivate the Payment Link. Until then, the correct public position is that commercial delivery is in preparation, not that the historic MIT application has become exclusive paid software.

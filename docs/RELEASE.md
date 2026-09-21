@@ -1,6 +1,8 @@
 # Clipwell Release Process
 
-Clipwell’s application source and GitHub releases are private. Future commercial DMGs must be signed, notarized, and delivered through the Clipwell buyer portal rather than anonymous GitHub release URLs. The historic v1.0.0 and v1.0.1 public releases remain an MIT-era baseline; do not describe them as exclusive commercial artifacts.
+The current public release of Clipwell is a free, MIT-licensed artifact published to the public `lioneltchami/clipwell` GitHub repository. Each release is signed, notarized, stapled, Sparkle-signed, and uploaded to the GitHub Release page; the Sparkle appcast is hosted at the same release so users receive auto-updates.
+
+The historic v1.0.0 and v1.0.1 public releases remain MIT-era baselines. Do not describe them as exclusive commercial artifacts.
 
 ## Versioning
 
@@ -9,9 +11,23 @@ Use semantic versioning: `vMAJOR.MINOR.PATCH`.
 - Increment `PATCH` for compatible bug fixes.
 - Increment `MINOR` for compatible features.
 - Increment `MAJOR` for incompatible user-facing, update, or automation changes.
-- Use private GitHub prereleases for internal preview builds.
+- Use prerelease tags (for example `v1.2.0-beta.1`) for internal preview builds.
 
-## Commercial Release Checklist
+## Free Release Checklist
+
+1. Confirm `swiftlint lint` has no errors or warnings, the full test suite passes, and the Release build succeeds.
+2. Confirm the source tree ships `LICENSE` and `NOTICE.md` so MIT rights and upstream attribution remain preserved.
+3. Verify the Apple signing and notarization secrets used by the existing release workflow.
+4. Build, sign, notarize, staple, and Sparkle-sign the DMG. Upload it to the public GitHub Release for the tag.
+5. Compute and record the DMG SHA-256 checksum in the GitHub Release body.
+6. Generate the Sparkle appcast entry (`scripts/update_appcast.py`) using `RELEASE_URL` and `RELEASE_NOTES`, and upload `appcast.xml` as the GitHub Release asset `appcast.xml`.
+7. Confirm `https://github.com/lioneltchami/clipwell/releases/latest/download/appcast.xml` resolves and exposes a public DMG enclosure for the new version.
+
+## Future Commercial Staging
+
+> **Not the v1.1.0 delivery path.** This section is preserved so the staged-commerce work is not lost, but v1.1.0 ships free and public. Revisit this checklist only when a genuine commercial offer (original paid value, buyer portal, signed commercial DMG, fulfillment infrastructure) is actually being prepared.
+
+### Commercial Release Checklist
 
 1. Confirm `swiftlint lint` has no errors or warnings, the full test suite passes, and the Release build succeeds.
 2. Confirm the commercial release contains the original **Recording Presets** feature beyond the historic MIT-covered public baseline. Preserve `LICENSE` and `NOTICE.md` in every distribution that includes covered material.
@@ -25,22 +41,24 @@ Use semantic versioning: `vMAJOR.MINOR.PATCH`.
 10. Test buyer portal download, re-download, refund revocation, Gatekeeper/notarization, code signing, checksum, Recording Presets save/apply behavior, and the Sparkle informational update path.
 11. Only after the checkout, webhook, release record, private object, transactional email, and buyer-flow tests pass may the live Payment Link be reactivated.
 
-## Sparkle Policy
+### Sparkle Policy
 
-New commercial builds use the Clipwell fulfillment appcast. The appcast sends buyers to the secure portal when a commercial update exists. It does not contain a public DMG enclosure.
+New free builds use the public GitHub Release appcast (`https://github.com/lioneltchami/clipwell/releases/latest/download/appcast.xml`). The appcast exposes the public DMG enclosure so Sparkle can deliver auto-updates to free users.
 
-Do not reintroduce `github.com/lioneltchami/clipwell/releases/latest/download/appcast.xml` as `SUFeedURL`. A private GitHub release is for the build team and cannot act as an anonymous buyer update service.
+For future commercial builds, the Clipwell fulfillment appcast at `https://clipwell-fulfillment.apoti.workers.dev/appcast.xml` sends buyers to the secure portal when a commercial update exists. It does not contain a public DMG enclosure.
 
-An authenticated in-app automatic-update channel requires device registration, buyer tokens, rotation, revocation policy, and a separate security review. Until then, keep the Sparkle flow informational and use the buyer portal for commercial update downloads.
+An authenticated in-app automatic-update channel requires device registration, buyer tokens, rotation, revocation policy, and a separate security review. Until then, keep the free Sparkle flow pointing at the public GitHub Release appcast and use the buyer portal for commercial update downloads.
 
 ## Release Ownership
 
 | Surface | Purpose | Access |
 |---|---|---|
-| Private `lioneltchami/clipwell` repository | Source, CI, signing, and internal release traceability | Build team only |
-| Private GitHub Release | Build-team artifact and release notes | Build team only |
+| Public `lioneltchami/clipwell` repository | Source, CI, signing, and release traceability | Public |
+| Public GitHub Release | Customer delivery channel for free releases (DMG + Sparkle appcast asset); build-team artifact for commercial staging | Public |
+| Public Sparkle appcast (`/releases/latest/download/appcast.xml`) | Auto-update feed for free users | Public |
+| Private GitHub Release | Build-team artifact for commercial staging | Build team only |
 | Private R2 bucket | Versioned commercial DMGs | Fulfillment Worker only |
 | Clipwell fulfillment Worker | Webhook verification, entitlements, portal, downloads, and informational appcast | Public routes with buyer authorization where required |
-| Public marketing site | Product information and, after launch acceptance, the Stripe purchase button | Public |
+| Public marketing site | Product information | Public |
 
 No release should claim to revoke or replace rights already granted for MIT-covered material. Consult qualified counsel before final terms of sale, seller disclosures, consumer rights, and tax treatment are published.

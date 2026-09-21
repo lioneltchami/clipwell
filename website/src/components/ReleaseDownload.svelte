@@ -15,15 +15,15 @@
   };
 
   const fallbackRelease: GitHubRelease = {
-    tag_name: 'v1.0.1',
-    html_url: 'https://github.com/lioneltchami/clipwell/releases/tag/v1.0.1',
-    published_at: '2026-08-21T00:00:00Z',
+    tag_name: 'v1.1.0',
+    html_url: 'https://github.com/lioneltchami/clipwell/releases/tag/v1.1.0',
+    published_at: '2026-09-21T00:00:00Z',
     assets: [
       {
-        name: 'Clipwell-1.0.1-arm64.dmg',
+        name: 'Clipwell-1.1.0-arm64.dmg',
         browser_download_url:
-          'https://github.com/lioneltchami/clipwell/releases/download/v1.0.1/Clipwell-1.0.1-arm64.dmg',
-        size: 3_669_162
+          'https://github.com/lioneltchami/clipwell/releases/download/v1.1.0/Clipwell-1.1.0-arm64.dmg',
+        size: 4_000_000
       }
     ]
   };

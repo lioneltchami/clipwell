@@ -11,7 +11,7 @@
     { id: 'demo', label: 'Inspect the product controls', href: '#demo', hint: 'Page' },
     { id: 'workflow', label: 'View the capture sequence', href: '#workflow', hint: 'Page' },
     { id: 'release', label: 'View the signed release', href: '#download', hint: 'Page' },
-    { id: 'pricing', label: 'View commercial readiness', href: '#pricing', hint: 'Page' },
+    { id: 'pricing', label: 'View the open-source license', href: '#pricing', hint: 'Page' },
     { id: 'source', label: 'Inspect the source', href: 'https://github.com/lioneltchami/clipwell', hint: 'GitHub' },
     { id: 'privacy', label: 'Read the privacy policy', href: `${home}privacy-policy`, hint: 'Page' }
   ]);
@@ -75,7 +75,7 @@
     <nav class="nav__center" aria-label="Main navigation">
       <a href="#demo">Controls</a>
       <a href="#workflow">Workflow</a>
-      <a href="#pricing">Commercial</a>
+      <a href="#pricing">License</a>
     </nav>
     <div class="nav__actions">
       <button type="button" class="nav__search" onclick={openPalette} aria-label="Search the Clipwell site">
