@@ -7,9 +7,11 @@ import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://lioneltchami.github.io/clipwell",
-  // Project Pages live under /clipwell/ — trailing slash required so BASE_URL joins correctly.
-  base: "/clipwell/",
+  site: "https://sweet-sawine-67c174.netlify.app",
+  // Netlify serves the site at the root. Custom-domain mapping is out of
+  // scope for this deploy. If a custom domain is later attached, change
+  // `site` to that URL and keep `base` at "/".
+  base: "/",
   integrations: [
     svelte(),
     sitemap({

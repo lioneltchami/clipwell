@@ -1,0 +1,77 @@
+# Netlify configuration for the Clipwell marketing site.
+#
+# Build command:  pnpm install --frozen-lockfile && pnpm build
+# Publish dir:    dist
+# Base directory: website
+#
+# This file replaces the GitHub Pages deploy.yml workflow as the
+# primary deploy target. The site URL is whatever Netlify assigns
+# the new project; custom domain mapping is out of scope for this pass.
+
+[build]
+  base = "website"
+  publish = "dist"
+  command = "pnpm install --frozen-lockfile && pnpm build"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "10"
+
+# Astro generates a trailing-slash directory per route (e.g. /features/index.html).
+# Netlify serves directory index files natively, so the canonical URL
+# /features/ resolves to features/index.html without a redirect rule.
+# Do NOT add a catch-all 404 redirect — that would mask Astro's 404 page.
+
+# Security headers — same policy as the Cloudflare Pages _headers file.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https://github.com https://raw.githubusercontent.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'"
+
+# Long cache for static assets.
+[[headers]]
+  for = "/clipwell-icon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/clipwell-logo.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/clipwell-og.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Short cache for HTML pages.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"
+
+# Sitemap and robots.
+[[headers]]
+  for = "/sitemap*.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

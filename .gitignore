@@ -107,3 +107,6 @@ dist/
 
 # LLVM coverage profiles
 *.profraw
+
+# Local Netlify folder
+.netlify
