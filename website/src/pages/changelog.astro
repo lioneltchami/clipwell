@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import ChangelogList from '../components/ChangelogList.svelte';
+
+const siteUrl = 'https://lioneltchami.github.io/clipwell';
+const pageUrl = `${siteUrl}/changelog`;
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: 'Clipwell — Changelog',
+		url: pageUrl,
+		description:
+			'Clipwell release history, versioning cadence, and Sparkle appcast link. Every public build ships signed, notarized, and stapled.'
+	}
+];
+---
+
+<BaseLayout
+	title="Changelog — Clipwell"
+	description="Clipwell release history. v1.1.0 ships free and public. Sparkle appcast at github.com/lioneltchami/clipwell/releases/latest/download/appcast.xml."
+	canonicalUrl={pageUrl}
+	structuredData={structuredData}
+>
+	<main id="main">
+		<PageHeader
+			client:load
+			eyebrow="Changelog"
+			title="What shipped, what changed, what's next."
+			lede="Free, MIT, signed, notarized. Read from newest to oldest."
+		/>
+
+		<ChangelogList client:visible />
+	</main>
+</BaseLayout>

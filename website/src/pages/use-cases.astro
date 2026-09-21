@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import UseCaseGrid from '../components/UseCaseGrid.svelte';
+
+const siteUrl = 'https://lioneltchami.github.io/clipwell';
+const pageUrl = `${siteUrl}/use-cases`;
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: 'Clipwell — Use cases',
+		url: pageUrl,
+		description:
+			'Common Clipwell workflows: developer tutorials, product demos, bug reproductions, internal docs, lectures, and customer support responses.'
+	}
+];
+---
+
+<BaseLayout
+	title="Use cases — Clipwell"
+	description="Six common Clipwell workflows: developer tutorials, product demos, bug reproductions, internal docs, education, and customer support. Each with recommended codec and output."
+	canonicalUrl={pageUrl}
+	structuredData={structuredData}
+>
+	<main id="main">
+		<PageHeader
+			client:load
+			eyebrow="Use cases"
+			title="Six shapes a take usually has."
+			lede="Pick the closest shape; the codec and the output container come along for the ride."
+		/>
+
+		<UseCaseGrid client:visible />
+	</main>
+</BaseLayout>

@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import InstallMethods from '../components/InstallMethods.svelte';
+import RequirementsPanel from '../components/RequirementsPanel.svelte';
+import VerifyPanel from '../components/VerifyPanel.svelte';
+
+const siteUrl = 'https://lioneltchami.github.io/clipwell';
+const pageUrl = `${siteUrl}/install`;
+const releaseUrl = 'https://github.com/lioneltchami/clipwell/releases/latest';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'HowTo',
+		name: 'Install Clipwell on macOS',
+		description: 'Direct DMG, Homebrew cask, and URL-scheme launch instructions. System requirements and artifact verification.',
+		url: pageUrl,
+		step: [
+			{
+				'@type': 'HowToStep',
+				name: 'Download the DMG',
+				text: `Open ${releaseUrl} in a browser and download the latest Clipwell-<version>-arm64.dmg.`
+			},
+			{
+				'@type': 'HowToStep',
+				name: 'Move Clipwell.app to /Applications',
+				text: 'Open the DMG, drag Clipwell.app to the Applications folder, then eject the DMG.'
+			},
+			{
+				'@type': 'HowToStep',
+				name: 'Grant the first-launch permissions',
+				text: 'macOS will prompt for Screen Recording, Microphone, and Camera as needed. Clipwell waits for each grant before using the corresponding source.'
+			},
+			{
+				'@type': 'HowToStep',
+				name: 'Verify the artifact',
+				text: 'Compute the SHA-256 and confirm Apple notarization. See the verification panel on this page.'
+			}
+		]
+	}
+];
+---
+
+<BaseLayout
+	title="Install — Clipwell"
+	description="Install Clipwell on macOS 15.2+. Direct DMG, Homebrew cask, or URL-scheme launch. Verify the signed artifact."
+	canonicalUrl={pageUrl}
+	structuredData={structuredData}
+>
+	<main id="main">
+		<PageHeader
+			client:load
+			eyebrow="Install"
+			title="Three ways to land the app. One notarized DMG."
+			lede="Clipwell is signed, notarized, and Sparkle-signed. Every method installs the same artifact."
+		/>
+
+		<InstallMethods client:visible />
+		<RequirementsPanel client:visible />
+		<VerifyPanel client:visible />
+	</main>
+</BaseLayout>

@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://lioneltchami.github.io/clipwell';
+const pageUrl = `${siteUrl}/404`;
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: 'Clipwell — 404',
+		url: pageUrl,
+		description: 'The page you requested is not on this site. Jump back to the home page.'
+	}
+];
+---
+
+<BaseLayout
+	title="404 — Clipwell"
+	description="That page is not on this site."
+	canonicalUrl={pageUrl}
+	robots="noindex, follow"
+	structuredData={structuredData}
+>
+	<main id="main" class="missing">
+		<article class="missing__inner">
+			<p class="mono-label"><span class="tick" aria-hidden="true"></span> 404 · not on this site</p>
+			<h1>The page you wanted is not here.</h1>
+			<p class="lede">
+			 The URL might be a stale link to a section that has moved, or it might never have existed.
+			 Three places to jump next.
+			</p>
+
+			<div class="missing__grid">
+				<a class="missing__card frame" href={`${import.meta.env.BASE_URL}`}>
+					<span class="missing__card-label">Home</span>
+					<span class="missing__card-title">The landing page</span>
+					<span class="missing__card-meta">Capture the proof. Keep the file.</span>
+				</a>
+
+				<a class="missing__card frame" href={`${import.meta.env.BASE_URL}install`}>
+					<span class="missing__card-label">Install</span>
+					<span class="missing__card-title">Three ways to land the app</span>
+					<span class="missing__card-meta">DMG · Homebrew · URL scheme</span>
+				</a>
+
+				<a class="missing__card frame" href={`${import.meta.env.BASE_URL}features`}>
+					<span class="missing__card-label">Features</span>
+					<span class="missing__card-title">Every surface of the capture</span>
+					<span class="missing__card-meta">Codec guide · URL schemes · shortcuts</span>
+				</a>
+			</div>
+
+			<p class="missing__foot">
+				Still stuck?
+				<a href="https://github.com/lioneltchami/clipwell/issues/new">Open an issue</a>.
+			</p>
+		</article>
+	</main>
+</BaseLayout>
+
+<style>
+	.missing {
+		padding: calc(var(--space-3xl) + 2.5rem) var(--page-gutter) var(--space-4xl);
+	}
+
+	.missing__inner {
+		max-width: var(--page-max);
+		margin: 0 auto;
+	}
+
+	.tick {
+		display: inline-block;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: var(--color-accent);
+		vertical-align: 1px;
+		margin-right: 0.4rem;
+	}
+
+	h1 {
+		max-width: 20ch;
+		margin: var(--space-md) 0 var(--space-lg);
+		font-size: clamp(2.25rem, 5vw, 4rem);
+		font-weight: 680;
+		letter-spacing: -0.05em;
+		line-height: 1.05;
+	}
+
+	.lede {
+		max-width: 48ch;
+		margin: 0 0 var(--space-2xl);
+		color: var(--color-ink-2);
+		font-size: var(--text-xl);
+	}
+
+	.missing__grid {
+		display: grid;
+		gap: var(--space-lg);
+		grid-template-columns: 1fr;
+		margin-bottom: var(--space-2xl);
+	}
+
+	.missing__card {
+		display: grid;
+		gap: var(--space-2xs);
+		padding: var(--space-xl);
+		background: var(--color-paper-2);
+		text-decoration: none;
+		color: inherit;
+		transition: background var(--dur-fast) var(--ease-out);
+	}
+
+	.missing__card:hover {
+		background: var(--color-paper-3);
+	}
+
+	.missing__card-label {
+		color: var(--color-accent);
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.missing__card-title {
+		color: var(--color-ink);
+		font-family: var(--font-display);
+		font-size: var(--text-lg);
+		letter-spacing: -0.02em;
+	}
+
+	.missing__card-meta {
+		color: var(--color-ink-3);
+		font-size: var(--text-sm);
+	}
+
+	.missing__foot {
+		margin: 0;
+		color: var(--color-ink-3);
+		font-size: var(--text-sm);
+	}
+
+	.missing__foot a {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	@media (min-width: 60rem) {
+		.missing__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>

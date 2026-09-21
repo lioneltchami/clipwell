@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import FeatureMatrix from '../components/FeatureMatrix.svelte';
+import CodecGuide from '../components/CodecGuide.svelte';
+import KeyboardShortcuts from '../components/KeyboardShortcuts.svelte';
+import URLSchemeReference from '../components/URLSchemeReference.svelte';
+
+const siteUrl = 'https://lioneltchami.github.io/clipwell';
+const pageUrl = `${siteUrl}/features`;
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: 'Clipwell — Features',
+		url: pageUrl,
+		description:
+			'Full feature reference for Clipwell: capture sources, codecs, audio routing, annotations, post-record trim, GIF export, and URL-scheme automation.'
+	}
+];
+---
+
+<BaseLayout
+	title="Features — Clipwell"
+	description="Capture sources, codecs, audio routing, annotations, post-record trim, GIF export, and URL-scheme automation. Every surface of Clipwell."
+	canonicalUrl={pageUrl}
+	structuredData={structuredData}
+>
+	<main id="main">
+		<PageHeader
+			client:load
+			eyebrow="Reference"
+			title="Every surface of the capture."
+			lede="ScreenCaptureKit under the hood, plain macOS chrome on top. The reference below describes what Clipwell does, where the controls live, and what the trade-offs are."
+		/>
+
+		<FeatureMatrix client:visible />
+		<CodecGuide client:visible />
+		<KeyboardShortcuts client:visible />
+		<URLSchemeReference client:visible />
+	</main>
+</BaseLayout>

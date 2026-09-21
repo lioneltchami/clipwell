@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.svelte';
+import OpenSourcePanel from '../components/OpenSourcePanel.svelte';
+import ContributePanel from '../components/ContributePanel.svelte';
+import CommercialFrameworkPanel from '../components/CommercialFrameworkPanel.svelte';
+
+const siteUrl = 'https://lioneltchami.github.io/clipwell';
+const pageUrl = `${siteUrl}/open-source`;
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: 'Clipwell — Open source',
+		url: pageUrl,
+		description:
+			'Clipwell is MIT-licensed source code. Attribution history (derived from BetterCapture by Joshua Sattler), contribution channels, and the non-operative commercial framework.'
+	}
+];
+---
+
+<BaseLayout
+	title="Open source — Clipwell"
+	description="Clipwell is MIT-licensed source code, derived from BetterCapture by Joshua Sattler. Contribution channels and the non-operative commercial framework."
+	canonicalUrl={pageUrl}
+	structuredData={structuredData}
+>
+	<main id="main">
+		<PageHeader
+			client:load
+			eyebrow="License"
+			title="MIT, with the rights spelled out."
+			lede="Clipwell is free software. The license grants broad rights; the attribution preserves the history."
+		/>
+
+		<OpenSourcePanel client:visible />
+		<ContributePanel client:visible />
+		<CommercialFrameworkPanel client:visible />
+	</main>
+</BaseLayout>
