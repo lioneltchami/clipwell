@@ -1,55 +1,77 @@
-name: Deploy to GitHub Pages
+name: Deploy to Netlify
+
+# Replaces the prior GitHub Pages deploy workflow. Triggers:
+#   - workflow_dispatch: manual run from the Actions tab (works out of the box
+#     without any secrets — uses the locally-configured Netlify CLI).
+#   - push to main: OPT-IN. Uncomment the `push:` block below to enable
+#     automatic deploy on every push. Requires two GitHub repo secrets:
+#       NETLIFY_AUTH_TOKEN — Netlify user settings → Personal access tokens
+#       NETLIFY_SITE_ID    — Netlify project → Settings → General → Site ID
+#     Configure under: https://github.com/lioneltchami/clipwell/settings/secrets/actions
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "website/**"
-      - ".github/workflows/deploy.yml"
   workflow_dispatch:
+    inputs:
+      site_id:
+        description: "Netlify Site ID (leave blank to use repo secret NETLIFY_SITE_ID)"
+        required: false
+        default: ""
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - "website/**"
+  #     - ".github/workflows/deploy.yml"
+  #     - "netlify.toml"
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  # id-token: write  # only needed if switching to OIDC-based auth
 
 concurrency:
-  group: pages
+  group: netlify
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NODE_VERSION: "20"
+      PNPM_VERSION: "10"
     steps:
       - uses: actions/checkout@v5
+
       - uses: pnpm/action-setup@v5
         with:
-          version: 9
+          version: ${{ env.PNPM_VERSION }}
+
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
           cache-dependency-path: website/pnpm-lock.yaml
+
       - name: Install and build
         working-directory: website
-        env:
-          PUBLIC_STRIPE_CHECKOUT_ENABLED: ${{ vars.PUBLIC_STRIPE_CHECKOUT_ENABLED || 'false' }}
-          PUBLIC_STRIPE_PAYMENT_LINK: ${{ vars.PUBLIC_STRIPE_PAYMENT_LINK || '' }}
-          PUBLIC_STRIPE_PRODUCT_LABEL: ${{ vars.PUBLIC_STRIPE_PRODUCT_LABEL || 'Commercial support' }}
         run: |
           pnpm install --frozen-lockfile
           pnpm build
-      - uses: actions/upload-pages-artifact@v4
-        with:
-          path: website/dist
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy to Netlify (CLI)
+        working-directory: website
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ github.event.inputs.site_id || secrets.NETLIFY_SITE_ID }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "::error::NETLIFY_AUTH_TOKEN is not set."
+            echo "Either run this workflow manually after exporting NETLIFY_AUTH_TOKEN locally,"
+            echo "or add the secret at: Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          if [ -z "$NETLIFY_SITE_ID" ]; then
+            echo "::error::NETLIFY_SITE_ID is not set."
+            echo "Provide it via the workflow input or as a repo secret."
+            exit 1
+          fi
+          netlify deploy --prod --dir=dist --auth "$NETLIFY_AUTH_TOKEN" --site "$NETLIFY_SITE_ID"
