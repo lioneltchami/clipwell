@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHeader from '../components/PageHeader.svelte';
+import OpenSourceHero from '../components/OpenSourceHero.svelte';
 import OpenSourcePanel from '../components/OpenSourcePanel.svelte';
 import ContributePanel from '../components/ContributePanel.svelte';
 import CommercialFrameworkPanel from '../components/CommercialFrameworkPanel.svelte';
 
 const siteUrl = 'https://lioneltchami.github.io/clipwell';
 const pageUrl = `${siteUrl}/open-source`;
+const base = import.meta.env.BASE_URL;
 
 const structuredData = [
 	{
@@ -16,6 +17,15 @@ const structuredData = [
 		url: pageUrl,
 		description:
 			'Clipwell is MIT-licensed source code. Attribution history (derived from BetterCapture by Joshua Sattler), contribution channels, and the non-operative commercial framework.'
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'SoftwareApplication',
+		name: 'Clipwell',
+		applicationCategory: 'MultimediaApplication',
+		operatingSystem: 'macOS 15.2+',
+		offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+		license: 'https://opensource.org/licenses/MIT'
 	}
 ];
 ---
@@ -27,13 +37,7 @@ const structuredData = [
 	structuredData={structuredData}
 >
 	<main id="main">
-		<PageHeader
-			client:load
-			eyebrow="License"
-			title="MIT, with the rights spelled out."
-			lede="Clipwell is free software. The license grants broad rights; the attribution preserves the history."
-		/>
-
+		<OpenSourceHero client:load base={base} />
 		<OpenSourcePanel client:visible />
 		<ContributePanel client:visible />
 		<CommercialFrameworkPanel client:visible />
