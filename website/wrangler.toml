@@ -1,0 +1,27 @@
+#:schema node_modules/wrangler/config-schema.json
+# Cloudflare Pages configuration for the Clipwell marketing site.
+#
+# Build command:  pnpm install && pnpm build
+# Output dir:     dist
+# Root directory: website
+#
+# Domain trade-off
+# ----------------
+# The project's canonical marketing URL is https://lioneltchami.github.io/clipwell/
+# (see ../docs/MIGRATION_TO_CLIPWELL.md). Deploying here without a custom domain
+# will publish the site at https://clipwell.pages.dev/ instead.
+# Do not switch the canonical URL until a custom domain is configured and the
+# redirect from lioneltchami.github.io/clipwell is in place.
+
+name = "clipwell"
+compatibility_date = "2026-09-01"
+pages_build_output_dir = "./dist"
+
+[build]
+command = "pnpm build"
+
+[build.environment]
+NODE_VERSION = "20"
+
+# Static site — no KV / Durable Objects / R2 bindings needed.
+# Cloudflare Pages serves the Astro static output directly.

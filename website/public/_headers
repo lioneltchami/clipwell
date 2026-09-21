@@ -1,0 +1,27 @@
+# Cloudflare Pages custom headers.
+# Mirrors the security headers the site already serves via its BaseLayout.
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https://github.com https://raw.githubusercontent.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'
+
+# Static assets — long-lived cache.
+/clipwell-icon.png
+/clipwell-logo.png
+/clipwell-og.png
+/favicon.svg
+/site.webmanifest
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages — short cache to keep content fresh.
+/*.html
+  Cache-Control: public, max-age=300, must-revalidate
+
+# Sitemap and robots.
+/sitemap*.xml
+/robots.txt
+  Cache-Control: public, max-age=3600
