@@ -1,35 +1,41 @@
-name: Deploy to Netlify
+name: Deploy to Cloudflare Pages
 
-# Replaces the prior GitHub Pages deploy workflow. Triggers:
-#   - workflow_dispatch: manual run from the Actions tab (works out of the box
-#     without any secrets — uses the locally-configured Netlify CLI).
-#   - push to main: OPT-IN. Uncomment the `push:` block below to enable
-#     automatic deploy on every push. Requires two GitHub repo secrets:
-#       NETLIFY_AUTH_TOKEN — Netlify user settings → Personal access tokens
-#       NETLIFY_SITE_ID    — Netlify project → Settings → General → Site ID
-#     Configure under: https://github.com/lioneltchami/clipwell/settings/secrets/actions
+# Builds the Astro/Svelte marketing site and ships it to the Cloudflare Pages
+# project named in website/wrangler.toml ("clipwell").
+#
+# Required GitHub repo secrets:
+#   CLOUDFLARE_API_TOKEN  — Cloudflare dashboard → My Profile → API Tokens →
+#     Create Token → Edit Cloudflare Pages template. Must be scoped to the
+#     account that owns the "clipwell" Pages project.
+#   CLOUDFLARE_ACCOUNT_ID — Cloudflare dashboard → Workers & Pages →
+#     right sidebar → "Account ID".
+# Configure at: https://github.com/lioneltchami/clipwell/settings/secrets/actions
+#
+# Triggers:
+#   push to main   → auto-deploy on any website/** change
+#   workflow_dispatch → manual run from the Actions tab
+#
+# Why this workflow (and not GitHub Pages or Netlify):
+#   - GitHub Pages returned 404 Not Found on every push because the Pages
+#     project on this repo was never enabled.
+#   - Netlify is a parallel config (see website/netlify.toml) but is not the
+#     production target. The live site is hosted on Cloudflare Pages at
+#     https://clipwell-site-1cn.pages.dev — this workflow ships there.
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "website/**"
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
-    inputs:
-      site_id:
-        description: "Netlify Site ID (leave blank to use repo secret NETLIFY_SITE_ID)"
-        required: false
-        default: ""
-  # push:
-  #   branches: [main]
-  #   paths:
-  #     - "website/**"
-  #     - ".github/workflows/deploy.yml"
-  #     - "netlify.toml"
+
+concurrency:
+  group: cloudflare-pages
+  cancel-in-progress: true
 
 permissions:
   contents: read
-  # id-token: write  # only needed if switching to OIDC-based auth
-
-concurrency:
-  group: netlify
-  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -38,40 +44,56 @@ jobs:
     env:
       NODE_VERSION: "20"
       PNPM_VERSION: "10"
-    steps:
-      - uses: actions/checkout@v5
 
-      - uses: pnpm/action-setup@v5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - uses: actions/setup-node@v5
+      - name: Setup Node
+        uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
           cache-dependency-path: website/pnpm-lock.yaml
 
-      - name: Install and build
+      - name: Install dependencies
         working-directory: website
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm build
+        run: pnpm install --frozen-lockfile
 
-      - name: Deploy to Netlify (CLI)
+      - name: Build site
+        working-directory: website
+        run: pnpm build
+
+      - name: Verify required secrets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN is not set. Configure at:"
+            echo "::error::  https://github.com/lioneltchami/clipwell/settings/secrets/actions"
+            exit 1
+          fi
+          if [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::CLOUDFLARE_ACCOUNT_ID is not set. Configure at:"
+            echo "::error::  https://github.com/lioneltchami/clipwell/settings/secrets/actions"
+            exit 1
+          fi
+
+      - name: Deploy to Cloudflare Pages
         working-directory: website
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ github.event.inputs.site_id || secrets.NETLIFY_SITE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
-            echo "::error::NETLIFY_AUTH_TOKEN is not set."
-            echo "Either run this workflow manually after exporting NETLIFY_AUTH_TOKEN locally,"
-            echo "or add the secret at: Settings → Secrets and variables → Actions."
-            exit 1
-          fi
-          if [ -z "$NETLIFY_SITE_ID" ]; then
-            echo "::error::NETLIFY_SITE_ID is not set."
-            echo "Provide it via the workflow input or as a repo secret."
-            exit 1
-          fi
-          netlify deploy --prod --dir=dist --auth "$NETLIFY_AUTH_TOKEN" --site "$NETLIFY_SITE_ID"
+          set -euo pipefail
+          echo "Shipping website/dist to Cloudflare Pages project 'clipwell'."
+          pnpm dlx wrangler@4 pages deploy dist \
+            --project-name=clipwell \
+            --branch=main \
+            --commit-dirty=true
